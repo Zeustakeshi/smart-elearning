@@ -1,18 +1,32 @@
 package initialize
 
 import (
-	"smart-elearning/internal/reouter"
+	"smart-elearning/internal/config"
+	"smart-elearning/internal/database"
+	"smart-elearning/internal/router"
 	"smart-elearning/internal/service/impl"
+	"smart-elearning/pkg/log"
 )
 
 func Run() {
 
+	/*	LOGGER CONFIG */
+	log.InitLogger()
+
+	/* APPLICATION CONFIG */
+	config.LoadConfig()
+
+	/* DATABASE CONFIG */
+	database.ConnectToDatabase()
+
+	/* DI CONFIG */
 	userService := impl.NewUserService()
-	userRoute := reouter.NewUserRoute(userService)
+	userRoute := router.NewUserRoute(userService)
 
-	router := reouter.NewRouter(userRoute)
+	r := router.NewRouter(userRoute)
 
-	err := router.Run("localhost:8080")
+	/* START APPLICATION */
+	err := r.Run("localhost:8080")
 	if err != nil {
 		return
 	}
