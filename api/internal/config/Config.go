@@ -7,6 +7,12 @@ var (
 type Config struct {
 	Server   ServerConfig
 	Database DatabaseConfig
+	Jwt      JwtConfig
+}
+
+type JwtConfig struct {
+	SecretKey  string `mapstructure:"secret_key"`
+	ExpireTime int    `mapstructure:"expire_time"`
 }
 
 type ServerConfig struct {
