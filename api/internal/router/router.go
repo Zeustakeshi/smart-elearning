@@ -18,6 +18,7 @@ func NewRouter(
 	studentGroup := router.Group("api/v1/student")
 	{
 		studentGroup.GET("test", userRoute.GetUsername)
+		studentGroup.GET("user", userRoute.GetUser)
 	}
 
 	/* TEACHER  */

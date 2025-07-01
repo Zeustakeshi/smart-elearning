@@ -18,6 +18,7 @@ func Run() {
 
 	/* DATABASE CONFIG */
 	database.ConnectToDatabase()
+	database.AutoMigrate()
 
 	/* DI CONFIG */
 	userService := impl.NewUserService()

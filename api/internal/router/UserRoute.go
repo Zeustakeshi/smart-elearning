@@ -29,3 +29,14 @@ func (userRoute *UserRoute) GetUsername(ctx *gin.Context) {
 		"username": username,
 	})
 }
+
+func (userRoute *UserRoute) GetUser(c *gin.Context) {
+	user, err := userRoute.userService.GetUser()
+
+	if err != nil {
+		_ = c.Error(err)
+		return
+	}
+
+	response.ResponseSuccess(c, response.SUCCESS, user)
+}

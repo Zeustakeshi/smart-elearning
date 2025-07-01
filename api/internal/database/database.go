@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	db *gorm.DB
+	DB *gorm.DB
 )
 
 func ConnectToDatabase() {
@@ -37,23 +37,24 @@ func ConnectToDatabase() {
 	dsn := parsedURL.String()
 
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-
-	fmt.Println("Connected to database successfully!")
-
 	if err != nil {
-		log.Logger.Error("Failed to connect to database")
+		log.Logger.Error(fmt.Sprintf("Failed to connect to database: %v", err))
 		os.Exit(1)
 	}
-	db = database
 
 	sqlDB, err := database.DB()
 	if err != nil {
-		fmt.Printf("Error getting *sql.DB: %v\n", err)
-	} else {
-		err := sqlDB.Close()
-		if err != nil {
-			return
-		}
+		log.Logger.Error(fmt.Sprintf("Error getting *sql.DB: %v", err))
+		os.Exit(1)
 	}
+
+	err = sqlDB.Ping()
+	if err != nil {
+		log.Logger.Error(fmt.Sprintf("Failed to ping database: %v", err))
+		os.Exit(1)
+	}
+
+	fmt.Println("Connected to database successfully!")
+	DB = database
 
 }
