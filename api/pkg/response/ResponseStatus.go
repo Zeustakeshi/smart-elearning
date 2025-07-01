@@ -32,5 +32,5 @@ var ResponseMessage = map[int]ResponseStatus{
 	EMAIL_ALREADY_EXISTED:     {StatusCode: http.StatusConflict, Message: "Email already exists."},
 	GENERATE_TOKEN_FAILED:     {StatusCode: http.StatusInternalServerError, Message: "Server error: unable to generate authentication token."},
 	INVALID_USER_TYPE:         {StatusCode: http.StatusBadRequest, Message: "Invalid user type error: user type must be STUDENT or TEACHER"},
-	INVALID_EMAIL_OR_PASSWORD: {StatusCode: http.StatusForbidden, Message: "Invalid Email or Password."},
+	INVALID_EMAIL_OR_PASSWORD: {StatusCode: http.StatusUnauthorized, Message: "Invalid Email or Password."},
 }
