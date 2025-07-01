@@ -8,27 +8,29 @@ type ResponseStatus struct {
 }
 
 const (
-	UNCATEGORIZED            = 9999
-	SUCCESS                  = 1000
-	USER_NOT_FOUND           = 1001
-	UNAUTHORIZED             = 1002
-	ACCESS_DENIED            = 1003
-	TOKEN_INVALID_OR_EXPIRED = 1004
-	BAD_REQUEST              = 1005
-	EMAIL_ALREADY_EXISTED    = 1006
-	GENERATE_TOKEN_FAILED    = 1007
-	INVALID_USER_TYPE        = 1008
+	UNCATEGORIZED             = 9999
+	SUCCESS                   = 1000
+	USER_NOT_FOUND            = 1001
+	UNAUTHORIZED              = 1002
+	ACCESS_DENIED             = 1003
+	TOKEN_INVALID_OR_EXPIRED  = 1004
+	BAD_REQUEST               = 1005
+	EMAIL_ALREADY_EXISTED     = 1006
+	GENERATE_TOKEN_FAILED     = 1007
+	INVALID_USER_TYPE         = 1008
+	INVALID_EMAIL_OR_PASSWORD = 1009
 )
 
 var ResponseMessage = map[int]ResponseStatus{
-	SUCCESS:                  {StatusCode: http.StatusOK, Message: "Success"},
-	UNCATEGORIZED:            {StatusCode: http.StatusInternalServerError, Message: "Uncategorized error"},
-	USER_NOT_FOUND:           {StatusCode: http.StatusNotFound, Message: "User not found"},
-	UNAUTHORIZED:             {StatusCode: http.StatusUnauthorized, Message: "Authorization header is required"},
-	ACCESS_DENIED:            {StatusCode: http.StatusForbidden, Message: "Access denied"},
-	TOKEN_INVALID_OR_EXPIRED: {StatusCode: http.StatusForbidden, Message: "Invalid or expired token"},
-	BAD_REQUEST:              {StatusCode: http.StatusBadRequest, Message: "Bad request."},
-	EMAIL_ALREADY_EXISTED:    {StatusCode: http.StatusConflict, Message: "Email already exists."},
-	GENERATE_TOKEN_FAILED:    {StatusCode: http.StatusInternalServerError, Message: "Server error: unable to generate authentication token."},
-	INVALID_USER_TYPE:        {StatusCode: http.StatusBadRequest, Message: "Invalid user type error: user type must be STUDENT or TEACHER"},
+	SUCCESS:                   {StatusCode: http.StatusOK, Message: "Success"},
+	UNCATEGORIZED:             {StatusCode: http.StatusInternalServerError, Message: "Uncategorized error"},
+	USER_NOT_FOUND:            {StatusCode: http.StatusNotFound, Message: "User not found"},
+	UNAUTHORIZED:              {StatusCode: http.StatusUnauthorized, Message: "Authorization header is required"},
+	ACCESS_DENIED:             {StatusCode: http.StatusForbidden, Message: "Access denied"},
+	TOKEN_INVALID_OR_EXPIRED:  {StatusCode: http.StatusForbidden, Message: "Invalid or expired token"},
+	BAD_REQUEST:               {StatusCode: http.StatusBadRequest, Message: "Bad request."},
+	EMAIL_ALREADY_EXISTED:     {StatusCode: http.StatusConflict, Message: "Email already exists."},
+	GENERATE_TOKEN_FAILED:     {StatusCode: http.StatusInternalServerError, Message: "Server error: unable to generate authentication token."},
+	INVALID_USER_TYPE:         {StatusCode: http.StatusBadRequest, Message: "Invalid user type error: user type must be STUDENT or TEACHER"},
+	INVALID_EMAIL_OR_PASSWORD: {StatusCode: http.StatusForbidden, Message: "Invalid Email or Password."},
 }

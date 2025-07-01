@@ -18,6 +18,7 @@ func NewRouter(
 	authGroup := router.Group("/api/v1/auth")
 	{
 		authGroup.POST("register", userRoute.CreateUser)
+		authGroup.POST("login", userRoute.Login)
 	}
 
 	/* STUDENT  */

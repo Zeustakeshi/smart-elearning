@@ -31,3 +31,21 @@ func (userRoute *UserRoute) CreateUser(c *gin.Context) {
 
 	responseStatus.ResponseSuccess(c, responseStatus.SUCCESS, token)
 }
+
+func (userRoute *UserRoute) Login(c *gin.Context) {
+	var request dto.LoginRequest
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		_ = c.Error(err)
+		return
+	}
+
+	token, err := userRoute.userService.Login(&request)
+	if err != nil {
+		_ = c.Error(err)
+		return
+	}
+
+	responseStatus.ResponseSuccess(c, responseStatus.SUCCESS, token)
+
+}

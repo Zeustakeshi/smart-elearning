@@ -7,4 +7,5 @@ import (
 
 type UserService interface {
 	CreateUser(request *request.CreateUserRequest) (*response.TokenResponse, error)
+	Login(request *request.LoginRequest) (*response.TokenResponse, error)
 }

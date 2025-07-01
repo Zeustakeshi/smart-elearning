@@ -20,3 +20,11 @@ func (*PasswordServiceImpl) HashPassword(rawPassword string) (string, error) {
 
 	return string(hashedPassword), nil
 }
+
+func (*PasswordServiceImpl) Verify(rawPassword string, hashPassword string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hashPassword), []byte(rawPassword))
+	if err != nil {
+		return false
+	}
+	return true
+}
