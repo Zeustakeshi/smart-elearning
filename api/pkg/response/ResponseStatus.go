@@ -19,6 +19,7 @@ const (
 	GENERATE_TOKEN_FAILED     = 1007
 	INVALID_USER_TYPE         = 1008
 	INVALID_EMAIL_OR_PASSWORD = 1009
+	INVALID_COURSE_VISIBILITY = 1010
 )
 
 var ResponseMessage = map[int]ResponseStatus{
@@ -33,4 +34,5 @@ var ResponseMessage = map[int]ResponseStatus{
 	GENERATE_TOKEN_FAILED:     {StatusCode: http.StatusInternalServerError, Message: "Server error: unable to generate authentication token."},
 	INVALID_USER_TYPE:         {StatusCode: http.StatusBadRequest, Message: "Invalid user type error: user type must be STUDENT or TEACHER"},
 	INVALID_EMAIL_OR_PASSWORD: {StatusCode: http.StatusUnauthorized, Message: "Invalid Email or Password."},
+	INVALID_COURSE_VISIBILITY: {StatusCode: http.StatusBadRequest, Message: "Invalid course visibility."},
 }

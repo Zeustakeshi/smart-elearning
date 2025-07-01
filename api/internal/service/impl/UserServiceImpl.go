@@ -43,12 +43,12 @@ func (userService *UserServiceImpl) CreateUser(request *request.CreateUserReques
 		return nil, exception.NewApiError(responseStatus.EMAIL_ALREADY_EXISTED, errors.New(""))
 	}
 
-	if request.Type != constants.TEACHER && request.Type != constants.STUDENT {
+	if request.Type != constants.ROLE_TEACHER && request.Type != constants.ROLE_STUDENT {
 		return nil, exception.NewApiError(responseStatus.INVALID_USER_TYPE, errors.New("invalid user type: "+request.Type))
 	}
 
 	var defaultAvatar string
-	if request.Type == constants.STUDENT {
+	if request.Type == constants.ROLE_STUDENT {
 		defaultAvatar = config.Configs.Resources.DefaultAvatar.Student
 	} else {
 		defaultAvatar = config.Configs.Resources.DefaultAvatar.Teacher
