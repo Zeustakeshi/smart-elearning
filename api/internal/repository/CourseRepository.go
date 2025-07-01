@@ -12,7 +12,9 @@ func NewCourseRepository() *CourseRepository {
 	return &CourseRepository{}
 }
 
-func (*CourseRepository) Save(course *entity.Course) *entity.Course {
-	database.DB.Create(course)
-	return course
+func (*CourseRepository) Save(course *entity.Course) (*entity.Course, error) {
+	if err := database.DB.Create(course).Error; err != nil {
+		return nil, err
+	}
+	return course, nil
 }
