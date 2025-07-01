@@ -88,7 +88,7 @@ func (userService *UserServiceImpl) Login(request *request.LoginRequest) (*respo
 	}
 
 	if !userService.passwordService.Verify(request.Password, user.Password) {
-		return nil, exception.NewApiError(responseStatus.INVALID_EMAIL_OR_PASSWORD, err)
+		return nil, exception.NewApiError(responseStatus.INVALID_EMAIL_OR_PASSWORD, errors.New("password mismatch"))
 	}
 
 	jwt, err := userService.jwtService.GenerateJwt(user)
