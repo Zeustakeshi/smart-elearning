@@ -15,7 +15,7 @@ func NewRouter(
 	router.Use(middleware.ExceptionMiddleware)
 
 	/* AUTH */
-	authGroup := router.Group("api/v1/auth")
+	authGroup := router.Group("/api/v1/auth")
 	{
 		authGroup.POST("register", userRoute.CreateUser)
 	}
