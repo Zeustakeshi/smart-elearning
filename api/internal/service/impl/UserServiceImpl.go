@@ -40,7 +40,7 @@ func (userService *UserServiceImpl) CreateUser(request *request.CreateUserReques
 	}
 
 	if request.Type != constants.TEACHER && request.Type != constants.STUDENT {
-		return nil, exception.NewApiError(responseStatus.INVALID_USER_TYPE, errors.New(""))
+		return nil, exception.NewApiError(responseStatus.INVALID_USER_TYPE, errors.New("invalid user type: " + request.Type))
 	}
 
 	var defaultAvatar string
