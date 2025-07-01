@@ -1,7 +1,8 @@
 package response
 
 type TeacherPublicInfoResponse struct {
-	Email  string
-	Name   string
-	Avatar string
+	Id     uint   `json:"id"`
+	Email  string `json:"email"`
+	Name   string `json:"name"`
+	Avatar string `json:"avatar"`
 }

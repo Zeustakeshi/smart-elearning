@@ -34,6 +34,7 @@ func NewRouter(
 		teacherGroup.Use(middleware.SecurityMiddleWare)
 		teacherGroup.Use(middleware.TeacherMiddleware)
 		teacherGroup.POST("courses", courseRoute.CreateCourse)
+		teacherGroup.GET("courses", courseRoute.GetAllCourse)
 	}
 
 	return router
