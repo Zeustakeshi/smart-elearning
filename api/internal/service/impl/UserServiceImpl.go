@@ -14,16 +14,20 @@ import (
 )
 
 type UserServiceImpl struct {
-	jwtService service.JwtService
-	repository *repository.UserRepository
+	jwtService      service.JwtService
+	repository      *repository.UserRepository
+	passwordService service.PasswordService
 }
 
 func NewUserService(
 	jwtService service.JwtService,
-	repository *repository.UserRepository) *UserServiceImpl {
+	repository *repository.UserRepository,
+	passwordService service.PasswordService,
+) *UserServiceImpl {
 	return &UserServiceImpl{
-		repository: repository,
-		jwtService: jwtService,
+		repository:      repository,
+		jwtService:      jwtService,
+		passwordService: passwordService,
 	}
 }
 
@@ -40,7 +44,7 @@ func (userService *UserServiceImpl) CreateUser(request *request.CreateUserReques
 	}
 
 	if request.Type != constants.TEACHER && request.Type != constants.STUDENT {
-		return nil, exception.NewApiError(responseStatus.INVALID_USER_TYPE, errors.New("invalid user type: " + request.Type))
+		return nil, exception.NewApiError(responseStatus.INVALID_USER_TYPE, errors.New("invalid user type: "+request.Type))
 	}
 
 	var defaultAvatar string
@@ -51,10 +55,16 @@ func (userService *UserServiceImpl) CreateUser(request *request.CreateUserReques
 	}
 	tokenExpireIn := config.Configs.Jwt.ExpireTime
 
+	hashPassword, err := userService.passwordService.HashPassword(request.Password)
+
+	if err != nil {
+		return nil, exception.NewApiError(responseStatus.UNCATEGORIZED, err)
+	}
+
 	user := userService.repository.Save(entity.NewUser(
 		request.Email,
 		request.Username,
-		request.Password,
+		hashPassword,
 		defaultAvatar, request.Type,
 	))
 
