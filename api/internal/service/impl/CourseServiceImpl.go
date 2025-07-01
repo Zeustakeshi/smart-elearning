@@ -37,7 +37,7 @@ func (courseService *CourseServiceImpl) CreateCourse(request *request.CreateCour
 		return nil, err
 	}
 
-	newCourse := courseService.repository.Save(&entity.Course{
+	newCourse, err := courseService.repository.Save(&entity.Course{
 		Code:        courseCode,
 		Name:        request.Name,
 		Description: request.Description,
@@ -47,6 +47,30 @@ func (courseService *CourseServiceImpl) CreateCourse(request *request.CreateCour
 		Visibility:  request.Visibility,
 	})
 
+	if err != nil {
+		return nil, err
+	}
+
 	return mapper.ToCourseResponse(newCourse)
 
+}
+
+func (courseService *CourseServiceImpl) GetAllCourse(page int, limit int, user *common.ClaimUser) ([]*response.CourseOverviewResponse, error) {
+	courses, err := courseService.repository.FindAllByTeacherId(user.ID, page, limit)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var courseResponses []*response.CourseOverviewResponse
+
+	for _, course := range courses {
+		courseResponse, err := mapper.ToCourseOverviewResponse(course)
+
+		if err != nil {
+			return nil, err
+		}
+		courseResponses = append(courseResponses, courseResponse)
+	}
+	return courseResponses, nil
 }

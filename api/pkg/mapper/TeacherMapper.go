@@ -7,6 +7,7 @@ import (
 
 func ToTeacherPublicResponse(teacher *entity.User) (*response.TeacherPublicInfoResponse, error) {
 	teacherInfo := &response.TeacherPublicInfoResponse{
+		Id:     teacher.ID,
 		Email:  teacher.Email,
 		Name:   teacher.Username,
 		Avatar: teacher.Avatar,

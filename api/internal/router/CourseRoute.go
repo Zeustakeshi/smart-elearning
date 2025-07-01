@@ -1,11 +1,13 @@
 package router
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
 	dto "smart-elearning/internal/dto/request"
 	"smart-elearning/internal/service"
 	"smart-elearning/pkg/response"
 	"smart-elearning/pkg/utils"
+	"strconv"
 )
 
 type CourseRoute struct {
@@ -42,4 +44,31 @@ func (route *CourseRoute) CreateCourse(c *gin.Context) {
 
 	response.ResponseSuccess(c, response.SUCCESS, course)
 
+}
+
+func (route *CourseRoute) GetAllCourse(c *gin.Context) {
+	page, err := strconv.Atoi(c.Query("page"))
+
+	if err != nil {
+		_ = c.Error(errors.New("Invalid Request query"))
+		return
+	}
+
+	limit, err := strconv.Atoi(c.Query("limit"))
+
+	if err != nil {
+		_ = c.Error(errors.New("Invalid Request query"))
+		return
+	}
+
+	user, err := utils.GetClaimUser(c)
+
+	if err != nil {
+		_ = c.Error(err)
+		return
+	}
+
+	courses, err := route.courseService.GetAllCourse(page, limit, user)
+
+	response.ResponseSuccess(c, response.SUCCESS, courses)
 }
