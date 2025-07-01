@@ -14,20 +14,22 @@ func NewRouter(
 	/* GLOBAL MIDDLEWARE CONFIG */
 	router.Use(middleware.ExceptionMiddleware)
 
+	/* AUTH */
+	authGroup := router.Group("api/v1/auth")
+	{
+		authGroup.POST("register", userRoute.CreateUser)
+	}
+
 	/* STUDENT  */
 	studentGroup := router.Group("api/v1/student")
 	{
 		studentGroup.Use(middleware.SecurityMiddleWare)
-		studentGroup.GET("test", userRoute.GetUsername)
-		studentGroup.GET("user", userRoute.GetUser)
-		studentGroup.GET("info", userRoute.GetUserInfo)
 	}
 
 	/* TEACHER  */
 	teacherGroup := router.Group("/api/v1/teacher")
 	{
 		teacherGroup.Use(middleware.SecurityMiddleWare)
-		teacherGroup.GET("test", userRoute.GetUsername)
 	}
 
 	return router

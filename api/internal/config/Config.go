@@ -5,9 +5,17 @@ var (
 )
 
 type Config struct {
-	Server   ServerConfig
-	Database DatabaseConfig
-	Jwt      JwtConfig
+	Server    ServerConfig    `mapstructure:"server"`
+	Database  DatabaseConfig  `mapstructure:"database"`
+	Jwt       JwtConfig       `mapstructure:"jwt"`
+	Resources ResourcesConfig `mapstructure:"resources"`
+}
+
+type ResourcesConfig struct {
+	DefaultAvatar struct {
+		Student string `mapstructure:"student"`
+		Teacher string `mapstructure:"teacher"`
+	} `mapstructure:"default_avatar"`
 }
 
 type JwtConfig struct {

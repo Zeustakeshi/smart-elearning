@@ -15,6 +15,9 @@ const (
 	ACCESS_DENIED            = 1003
 	TOKEN_INVALID_OR_EXPIRED = 1004
 	BAD_REQUEST              = 1005
+	EMAIL_ALREADY_EXISTED    = 1006
+	GENERATE_TOKEN_FAILED    = 1007
+	INVALID_USER_TYPE        = 1008
 )
 
 var ResponseMessage = map[int]ResponseStatus{
@@ -25,4 +28,7 @@ var ResponseMessage = map[int]ResponseStatus{
 	ACCESS_DENIED:            {StatusCode: http.StatusForbidden, Message: "Access denied"},
 	TOKEN_INVALID_OR_EXPIRED: {StatusCode: http.StatusForbidden, Message: "Invalid or expired token"},
 	BAD_REQUEST:              {StatusCode: http.StatusBadRequest, Message: "Bad request."},
+	EMAIL_ALREADY_EXISTED:    {StatusCode: http.StatusConflict, Message: "Email already existed."},
+	GENERATE_TOKEN_FAILED:    {StatusCode: http.StatusInternalServerError, Message: "Server error: unable to generate authentication token."},
+	INVALID_USER_TYPE:        {StatusCode: http.StatusBadRequest, Message: "Invalid user type error: user type must be STUDENT or TEACHER"},
 }
