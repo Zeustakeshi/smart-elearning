@@ -39,7 +39,6 @@ func SecurityMiddleWare(c *gin.Context) {
 	})
 
 	if err != nil || !token.Valid {
-		panic(err)
 		response.ResponseError(c, response.TOKEN_INVALID_OR_EXPIRED)
 		c.Abort()
 		return

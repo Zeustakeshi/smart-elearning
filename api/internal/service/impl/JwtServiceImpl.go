@@ -15,7 +15,7 @@ func NewJwtService() *JwtServiceImpl {
 	return &JwtServiceImpl{}
 }
 
-func (*JwtServiceImpl) GenerateJwt(user *entity.User) (*string, error) {
+func (*JwtServiceImpl) GenerateJwt(user *entity.User) (string, error) {
 	jwtSecret := []byte(config.Configs.Jwt.SecretKey)
 	jwtExpireIn := config.Configs.Jwt.ExpireTime
 
@@ -38,8 +38,8 @@ func (*JwtServiceImpl) GenerateJwt(user *entity.User) (*string, error) {
 	tokenString, err := token.SignedString(jwtSecret)
 
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
-	return &tokenString, nil
+	return tokenString, nil
 }
