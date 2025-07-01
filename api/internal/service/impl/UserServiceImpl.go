@@ -43,7 +43,12 @@ func (userService *UserServiceImpl) CreateUser(request *request.CreateUserReques
 		return nil, exception.NewApiError(responseStatus.INVALID_USER_TYPE, errors.New(""))
 	}
 
-	defaultAvatar := config.Configs.Resources.DefaultAvatar.Teacher
+	var defaultAvatar string
+	if request.Type == constants.STUDENT {
+		defaultAvatar = config.Configs.Resources.DefaultAvatar.Student
+	} else {
+		defaultAvatar = config.Configs.Resources.DefaultAvatar.Teacher
+	}
 	tokenExpireIn := config.Configs.Jwt.ExpireTime
 
 	user := userService.repository.Save(entity.NewUser(
