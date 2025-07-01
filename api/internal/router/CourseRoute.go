@@ -69,6 +69,10 @@ func (route *CourseRoute) GetAllCourse(c *gin.Context) {
 	}
 
 	courses, err := route.courseService.GetAllCourse(page, limit, user)
+	if err != nil {
+		_ = c.Error(err)
+		return
+	}
 
 	response.ResponseSuccess(c, response.SUCCESS, courses)
 }
