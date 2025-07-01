@@ -11,5 +11,6 @@ type JwtClaims struct {
 type ClaimUser struct {
 	ID       uint   `json:"user_id"`
 	Username string `json:"username"`
+	Email    string `json:"email"`
 	Scope    string `json:"scope"`
 }

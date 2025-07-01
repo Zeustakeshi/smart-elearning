@@ -1,8 +1,10 @@
 package service
 
-import "smart-elearning/internal/entity"
+import (
+	"smart-elearning/internal/dto/request"
+	"smart-elearning/internal/dto/response"
+)
 
 type UserService interface {
-	GetUsername() (*string, error)
-	GetUser() (*entity.User, error)
+	CreateUser(request *request.CreateUserRequest) (*response.TokenResponse, error)
 }

@@ -2,9 +2,9 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	dto "smart-elearning/internal/dto/request"
 	"smart-elearning/internal/service"
-	"smart-elearning/pkg/response"
-	"smart-elearning/pkg/utils"
+	responseStatus "smart-elearning/pkg/response"
 )
 
 type UserRoute struct {
@@ -12,43 +12,22 @@ type UserRoute struct {
 }
 
 func NewUserRoute(userService service.UserService) *UserRoute {
-	return &UserRoute{
-		userService: userService,
-	}
+	return &UserRoute{userService: userService}
 }
 
-func (userRoute *UserRoute) GetUsername(ctx *gin.Context) {
+func (userRoute *UserRoute) CreateUser(c *gin.Context) {
+	var request dto.CreateUserRequest
 
-	username, err := userRoute.userService.GetUsername()
-
-	if err != nil {
-		_ = ctx.Error(err)
+	if err := c.ShouldBindJSON(&request); err != nil {
+		_ = c.Error(err)
 		return
 	}
 
-	response.ResponseSuccess(ctx, response.SUCCESS, gin.H{
-		"username": username,
-	})
-}
-
-func (userRoute *UserRoute) GetUser(c *gin.Context) {
-	user, err := userRoute.userService.GetUser()
-
+	token, err := userRoute.userService.CreateUser(&request)
 	if err != nil {
 		_ = c.Error(err)
 		return
 	}
 
-	response.ResponseSuccess(c, response.SUCCESS, user)
-}
-
-func (userRoute *UserRoute) GetUserInfo(c *gin.Context) {
-	authUser, err := utils.GetClaimUser(c)
-
-	if err != nil {
-		_ = c.Error(err)
-		return
-	}
-
-	response.ResponseSuccess(c, response.SUCCESS, authUser)
+	responseStatus.ResponseSuccess(c, responseStatus.SUCCESS, token)
 }

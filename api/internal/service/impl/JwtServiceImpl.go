@@ -15,16 +15,17 @@ func NewJwtService() *JwtServiceImpl {
 	return &JwtServiceImpl{}
 }
 
-func (*JwtServiceImpl) GenerateJwt(user *entity.User) (string, error) {
+func (*JwtServiceImpl) GenerateJwt(account *entity.User) (string, error) {
 	jwtSecret := []byte(config.Configs.Jwt.SecretKey)
 	jwtExpireIn := config.Configs.Jwt.ExpireTime
 
 	claims := common.JwtClaims{
-		Sub: user.ID,
+		Sub: account.ID,
 		ClaimUser: common.ClaimUser{
-			ID:       user.ID,
-			Username: user.Username,
-			Scope:    user.Role,
+			ID:       account.ID,
+			Username: account.Username,
+			Email:    account.Email,
+			Scope:    account.Role,
 		},
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(

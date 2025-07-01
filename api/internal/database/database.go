@@ -20,8 +20,6 @@ func ConnectToDatabase() {
 	dbUrl := config.Configs.Database.Postgresql.DBUrl
 	dbPassword := config.Configs.Database.Postgresql.DBPassword
 
-	fmt.Printf("user=%s, url=%s, password=%s", dbUser, dbUrl, dbPassword)
-
 	parsedURL, err := url.Parse(dbUrl)
 
 	if err != nil {
