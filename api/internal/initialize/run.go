@@ -28,7 +28,8 @@ func Run() {
 
 	/* SERVICE */
 	jwtService := impl.NewJwtService()
-	userService := impl.NewUserService(jwtService, userRepository)
+	passwordService := impl.NewPasswordService()
+	userService := impl.NewUserService(jwtService, userRepository, passwordService)
 
 	/* ROUTE */
 	userRoute := router.NewUserRoute(userService)

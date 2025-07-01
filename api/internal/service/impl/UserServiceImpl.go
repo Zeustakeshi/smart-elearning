@@ -79,3 +79,28 @@ func (userService *UserServiceImpl) CreateUser(request *request.CreateUserReques
 	}, nil
 
 }
+
+func (userService *UserServiceImpl) Login(request *request.LoginRequest) (*response.TokenResponse, error) {
+	user, err := userService.repository.FindByEmail(request.Email)
+
+	if err != nil {
+		return nil, exception.NewApiError(responseStatus.INVALID_EMAIL_OR_PASSWORD, err)
+	}
+
+	if !userService.passwordService.Verify(request.Password, user.Password) {
+		return nil, exception.NewApiError(responseStatus.INVALID_EMAIL_OR_PASSWORD, err)
+	}
+
+	jwt, err := userService.jwtService.GenerateJwt(user)
+	if err != nil {
+		return nil, exception.NewApiError(responseStatus.GENERATE_TOKEN_FAILED, err)
+	}
+
+	tokenExpireIn := config.Configs.Jwt.ExpireTime
+
+	return &response.TokenResponse{
+		Value:    jwt,
+		ExpireIn: tokenExpireIn,
+	}, nil
+
+}
