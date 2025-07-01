@@ -6,3 +6,6 @@ database:
     db_url: ""
     db_user: ""
     db_password: ""
+jwt:
+  secret_key: ""
+  expire_time: "2" # 2 hour

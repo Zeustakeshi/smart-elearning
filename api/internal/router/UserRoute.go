@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"smart-elearning/internal/service"
 	"smart-elearning/pkg/response"
+	"smart-elearning/pkg/utils"
 )
 
 type UserRoute struct {
@@ -39,4 +40,15 @@ func (userRoute *UserRoute) GetUser(c *gin.Context) {
 	}
 
 	response.ResponseSuccess(c, response.SUCCESS, user)
+}
+
+func (userRoute *UserRoute) GetUserInfo(c *gin.Context) {
+	authUser, err := utils.GetClaimUser(c)
+
+	if err != nil {
+		_ = c.Error(err)
+		return
+	}
+
+	response.ResponseSuccess(c, response.SUCCESS, authUser)
 }

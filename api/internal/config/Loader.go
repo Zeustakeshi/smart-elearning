@@ -7,13 +7,15 @@ import (
 
 func LoadConfig() {
 
-	viper.AddConfigPath("/api/configs")
+	viper.AddConfigPath("api/configs")
 	viper.SetConfigType("yml")
+	viper.SetConfigName("config")
 	viper.AutomaticEnv()
 
 	viper.BindEnv("database.postgresql.db_url", "DB_URL")
 	viper.BindEnv("database.postgresql.db_user", "DB_USER")
 	viper.BindEnv("database.postgresql.db_password", "DB_PASSWORD")
+	viper.BindEnv("jwt.secret_key", "JWT_SECRET")
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Logger.Error("Read configs failed: " + err.Error())
