@@ -1,6 +1,9 @@
 package exception
 
-import "smart-elearning/pkg/response"
+import (
+	"errors"
+	"smart-elearning/pkg/response"
+)
 
 type ApiError struct {
 	ResponseCode int   `json:"-"`
@@ -11,6 +14,13 @@ func NewApiError(responseCode int, err error) *ApiError {
 	return &ApiError{
 		ResponseCode: responseCode,
 		Err:          err,
+	}
+}
+
+func NewDefaultApiError(responseCode int) *ApiError {
+	return &ApiError{
+		ResponseCode: responseCode,
+		Err:          errors.New(response.ResponseMessage[responseCode].Message),
 	}
 }
 
