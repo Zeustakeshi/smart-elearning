@@ -21,14 +21,14 @@ import {
 export function NavMain({
   items,
 }: {
-  items: {
-    title: string;
-    icon?: LucideIcon;
-    url: string;
-    isActive?: boolean;
-    items?: {
-      title: string;
-      url: string;
+  readonly items: readonly {
+    readonly title: string;
+    readonly icon?: LucideIcon;
+    readonly url: string;
+    readonly isActive?: boolean;
+    readonly items?: readonly {
+      readonly title: string;
+      readonly url: string;
     }[];
   }[];
 }) {

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { NavMain } from "@/components/shadcn-clone/sidebar/nav-main";
+import { NavUser } from "@/components/shadcn-clone/sidebar/nav-user";
 
 import {
   Sidebar,

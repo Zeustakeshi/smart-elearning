@@ -9,10 +9,10 @@ import type { LucideIcon } from "lucide-react";
 export function NavProjects({
   items_data,
 }: {
-  items_data: {
-    name: string;
-    url: string;
-    icon: LucideIcon;
+  readonly items_data: readonly {
+    readonly name: string;
+    readonly url: string;
+    readonly icon: LucideIcon;
   }[];
 }) {
   return (
