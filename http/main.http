@@ -48,7 +48,7 @@ GET {{baseUrl}}/teacher/courses/1/members?page=0&limit=10
 Authorization: Bearer {{teacher_token}}
 
 
-### create muilchoice question lesson
+### create multichoice question lesson
 POST {{baseUrl}}/teacher/courses/1/lesson/multichoice
 Authorization: Bearer {{teacher_token}}
 Content-Type: application/json
