@@ -28,3 +28,25 @@ func (*CourseRepository) FindAllByTeacherId(teacherId uint, page int, limit int)
 	}
 	return courses, nil
 }
+
+func (*CourseRepository) FindByCode(courseCode string) (*entity.Course, error) {
+
+	var course entity.Course
+	result := database.DB.Where("code = ?", courseCode).First(&course)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return &course, nil
+}
+
+func (*CourseRepository) FindByIdAndTeacherId(courseId uint, teacherId uint) (*entity.Course, error) {
+
+	var course entity.Course
+	result := database.DB.Where("id = ? and teacher_id = ?", courseId, teacherId).First(&course)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return &course, nil
+}

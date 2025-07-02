@@ -9,6 +9,7 @@ func AutoMigrate() {
 	err := DB.AutoMigrate(
 		&entity.User{},
 		&entity.Course{},
+		&entity.CourseMember{},
 	)
 
 	if err != nil {

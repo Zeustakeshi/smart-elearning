@@ -8,6 +8,7 @@ import (
 func NewRouter(
 	userRoute *UserRoute,
 	courseRoute *CourseRoute,
+	courseMemberRoute *CourseMemberRoute,
 ) *gin.Engine {
 
 	var router = gin.New()
@@ -26,6 +27,8 @@ func NewRouter(
 	studentGroup := router.Group("api/v1/student")
 	{
 		studentGroup.Use(middleware.SecurityMiddleWare)
+		studentGroup.Use(middleware.StudentMiddleware)
+		studentGroup.POST("courses/join", courseMemberRoute.JoinCourse)
 	}
 
 	/* TEACHER  */
@@ -35,6 +38,7 @@ func NewRouter(
 		teacherGroup.Use(middleware.TeacherMiddleware)
 		teacherGroup.POST("courses", courseRoute.CreateCourse)
 		teacherGroup.GET("courses", courseRoute.GetAllCourse)
+		teacherGroup.GET("courses/:courseId/members", courseMemberRoute.GetAllCourseMember)
 	}
 
 	return router

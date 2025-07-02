@@ -26,20 +26,24 @@ func Run() {
 	/* REPOSITORY */
 	userRepository := repository.NewUserRepository()
 	courseRepository := repository.NewCourseRepository()
+	courseMemberRepository := repository.NewCourseMemberRepository()
 
 	/* SERVICE */
 	jwtService := impl.NewJwtService()
 	passwordService := impl.NewPasswordService()
 	userService := impl.NewUserService(jwtService, userRepository, passwordService)
 	courseService := impl.NewCourseService(courseRepository)
+	courseMemberService := impl.NewCourseMemberService(courseRepository, courseMemberRepository, userRepository)
 
 	/* ROUTE */
 	userRoute := router.NewUserRoute(userService)
 	courseRoute := router.NewCourseRoute(courseService)
+	courseMemberRoute := router.NewCourseMemberRoute(courseMemberService)
 
 	r := router.NewRouter(
 		userRoute,
 		courseRoute,
+		courseMemberRoute,
 	)
 
 	/* START APPLICATION */
