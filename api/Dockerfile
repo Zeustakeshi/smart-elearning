@@ -1,6 +1,6 @@
 # Sử dụng một image đa giai đoạn để tạo ra một binary cuối cùng nhỏ gọn
 # Giai đoạn builder: Dùng để biên dịch ứng dụng Go
-FROM golang:1.22-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 # Thiết lập thư mục làm việc bên trong container
 WORKDIR /app
