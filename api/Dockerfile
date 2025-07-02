@@ -24,7 +24,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o main ./cmd/main.go
 
 # Giai đoạn production: Dùng một image siêu nhỏ để chứa binary đã biên dịch
-FROM alpine:latest
+FROM alpine:3.18
 
 # Sao chép binary đã biên dịch từ giai đoạn builder
 COPY --from=builder /app/main /usr/local/bin/elearning
