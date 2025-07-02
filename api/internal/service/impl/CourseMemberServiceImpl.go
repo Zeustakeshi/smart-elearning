@@ -68,19 +68,20 @@ func (courseMemberService *CourseMemberServiceImpl) GetAllMember(courseId uint, 
 
 		wg.Add(1)
 
-		go func(*entity.CourseMember) {
+		go func(m *entity.CourseMember) {
 			defer wg.Done()
 
-			memberInfo, err := courseMemberService.userRepository.FindById(member.StudentId)
+			memberInfo, err := courseMemberService.userRepository.FindById(m.StudentId)
 			if err != nil {
 				errChan <- exception.NewApiError(responseCode.GET_COURSE_MEMBERS_ERROR, err)
+				return
 			}
 
 			resultChan <- &response.CourseMemberResponse{
 				Id:         memberInfo.ID,
 				Name:       memberInfo.Username,
 				Avatar:     memberInfo.Avatar,
-				EnrolledOn: *member.EnrolledOn,
+				EnrolledOn: *m.EnrolledOn,
 			}
 
 		}(member)
