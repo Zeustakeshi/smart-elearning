@@ -20,6 +20,9 @@ const (
 	INVALID_USER_TYPE         = 1008
 	INVALID_EMAIL_OR_PASSWORD = 1009
 	INVALID_COURSE_VISIBILITY = 1010
+	COURSE_NOT_FOUND          = 1011
+	JOIN_COURSE_ERROR         = 1012
+	GET_COURSE_MEMBERS_ERROR  = 1013
 )
 
 var ResponseMessage = map[int]ResponseStatus{
@@ -35,4 +38,7 @@ var ResponseMessage = map[int]ResponseStatus{
 	INVALID_USER_TYPE:         {StatusCode: http.StatusBadRequest, Message: "Invalid user type error: user type must be STUDENT or TEACHER"},
 	INVALID_EMAIL_OR_PASSWORD: {StatusCode: http.StatusUnauthorized, Message: "Invalid Email or Password."},
 	INVALID_COURSE_VISIBILITY: {StatusCode: http.StatusBadRequest, Message: "Invalid course visibility."},
+	COURSE_NOT_FOUND:          {StatusCode: http.StatusNotFound, Message: "Course not found."},
+	JOIN_COURSE_ERROR:         {StatusCode: http.StatusInternalServerError, Message: "Join to course failed."},
+	GET_COURSE_MEMBERS_ERROR:  {StatusCode: http.StatusInternalServerError, Message: "Can't not ger course members. Internal server error"},
 }

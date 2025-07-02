@@ -1,0 +1,48 @@
+@baseUrl = http://localhost:8080/api/v1
+@teacher_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InRlYWNoZXJAZ21haWwuY29tIiwic2NvcGUiOiJURUFDSEVSIiwiZXhwIjoxNzUxNDQ4NjQyLCJpYXQiOjE3NTE0NDE0NDJ9.h86v14HMP8hOCtj18mi12pELUq94rsR7Ei05rjjmh1o
+@student_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InN0dWRlbnRAZ21haWwuY29tIiwic2NvcGUiOiJTVFVERU5UIiwiZXhwIjoxNzUxNDQ4Njc3LCJpYXQiOjE3NTE0NDE0Nzd9.L2jjDD4QOdLHp8SnbdzXyaLQAKaTxfDlXFrxdzPB_3w
+
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+    "email" : "student@gmail.com",
+    "username": "Minh Hiếu",
+    "password" : "123456",
+    "type": "STUDENT" 
+}
+
+###
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "teacher@gmail.com",
+    "password": "123456"
+}
+
+
+###
+POST {{baseUrl}}/teacher/courses
+Authorization: Bearer {{teacher_token}}
+Content-Type: application/json
+
+{
+    "name": "Python cơ bản",
+    "description": "123213",
+    "visibility": "PUBLIC"
+}
+
+###
+GET {{baseUrl}}/teacher/courses?page=0&limit=2
+Authorization: Bearer {{student_token}}
+
+
+### Join course
+POST {{baseUrl}}/student/courses/join?code=EkyLDbw1kkJAOPVUzIFop
+Authorization: Bearer {{student_token}}
+
+
+### get all course member
+GET {{baseUrl}}/teacher/courses/1/members?page=0&limit=10
+Authorization: Bearer {{teacher_token}}

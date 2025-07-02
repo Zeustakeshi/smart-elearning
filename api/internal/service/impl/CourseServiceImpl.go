@@ -24,7 +24,7 @@ func NewCourseService(courseRepository *repository.CourseRepository) *CourseServ
 	}
 }
 
-func (courseService *CourseServiceImpl) CreateCourse(request *request.CreateCourseRequest, teacher *common.ClaimUser) (*response.CourseResponse, error) {
+func (courseMemberService *CourseServiceImpl) CreateCourse(request *request.CreateCourseRequest, teacher *common.ClaimUser) (*response.CourseResponse, error) {
 	if request.Visibility != constants.COURSE_PUBLIC &&
 		request.Visibility != constants.COURSE_LINK_ONLY &&
 		request.Visibility != constants.COURSE_PRIVATE {
@@ -37,7 +37,7 @@ func (courseService *CourseServiceImpl) CreateCourse(request *request.CreateCour
 		return nil, err
 	}
 
-	newCourse, err := courseService.repository.Save(&entity.Course{
+	newCourse, err := courseMemberService.repository.Save(&entity.Course{
 		Code:        courseCode,
 		Name:        request.Name,
 		Description: request.Description,
@@ -55,8 +55,8 @@ func (courseService *CourseServiceImpl) CreateCourse(request *request.CreateCour
 
 }
 
-func (courseService *CourseServiceImpl) GetAllCourse(page int, limit int, user *common.ClaimUser) ([]*response.CourseOverviewResponse, error) {
-	courses, err := courseService.repository.FindAllByTeacherId(user.ID, page, limit)
+func (courseMemberService *CourseServiceImpl) GetAllCourse(page int, limit int, user *common.ClaimUser) ([]*response.CourseOverviewResponse, error) {
+	courses, err := courseMemberService.repository.FindAllByTeacherId(user.ID, page, limit)
 
 	if err != nil {
 		return nil, err

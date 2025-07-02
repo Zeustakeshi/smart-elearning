@@ -35,6 +35,15 @@ func (*UserRepository) FindByEmail(email string) (*entity.User, error) {
 	return &user, nil
 }
 
+func (*UserRepository) FindById(id uint) (*entity.User, error) {
+	var user entity.User
+	result := database.DB.Where("id = ?", id).First(&user)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return &user, nil
+}
+
 func (*UserRepository) Save(user *entity.User) *entity.User {
 	database.DB.Create(user)
 	return user
