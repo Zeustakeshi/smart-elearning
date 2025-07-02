@@ -17,10 +17,16 @@ func NewApiError(responseCode int, err error) *ApiError {
 	}
 }
 
-func NewDefaultApiError(responseCode int) *ApiError {
+func NewDefaultApiError(responseCode int, err error) *ApiError {
+	var wrappedErr error
+	if err != nil {
+		wrappedErr = fmt.Errorf("%s: %w", response.ResponseMessage[responseCode].Message, err)
+	} else {
+		wrappedErr = errors.New(response.ResponseMessage[responseCode].Message)
+	}
 	return &ApiError{
 		ResponseCode: responseCode,
-		Err:          errors.New(response.ResponseMessage[responseCode].Message),
+		Err:          wrappedErr,
 	}
 }
 
