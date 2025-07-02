@@ -2,6 +2,7 @@ package exception
 
 import (
 	"errors"
+	"fmt"
 	"smart-elearning/pkg/response"
 )
 
@@ -11,13 +12,6 @@ type ApiError struct {
 }
 
 func NewApiError(responseCode int, err error) *ApiError {
-	return &ApiError{
-		ResponseCode: responseCode,
-		Err:          err,
-	}
-}
-
-func NewDefaultApiError(responseCode int, err error) *ApiError {
 	var wrappedErr error
 	if err != nil {
 		wrappedErr = fmt.Errorf("%s: %w", response.ResponseMessage[responseCode].Message, err)

@@ -24,6 +24,7 @@ const (
 	JOIN_COURSE_ERROR         = 1012
 	GET_COURSE_MEMBERS_ERROR  = 1013
 	CREATE_LESSON_ERROR       = 1014
+	JSON_PROCESSING_ERROR     = 1015
 )
 
 var ResponseMessage = map[int]ResponseStatus{
@@ -43,4 +44,5 @@ var ResponseMessage = map[int]ResponseStatus{
 	JOIN_COURSE_ERROR:         {StatusCode: http.StatusInternalServerError, Message: "Join to course failed."},
 	GET_COURSE_MEMBERS_ERROR:  {StatusCode: http.StatusInternalServerError, Message: "Cannot get course members. Internal server error"},
 	CREATE_LESSON_ERROR:       {StatusCode: http.StatusInternalServerError, Message: "Cannot create lesson. Internal server error"},
+	JSON_PROCESSING_ERROR:     {StatusCode: http.StatusInternalServerError, Message: "Json processing error"},
 }

@@ -2,6 +2,7 @@ package impl
 
 import (
 	"encoding/json"
+	"errors"
 	"smart-elearning/internal/dto/common"
 	"smart-elearning/internal/dto/request"
 	"smart-elearning/internal/dto/response"
@@ -43,24 +44,24 @@ func (lessonService *MultiChoiceLessonServiceImpl) CreateLesson(
 	}
 
 	if !isOwner {
-		return nil, exception.NewDefaultApiError(responseStatus.ACCESS_DENIED)
+		return nil, exception.NewApiError(responseStatus.ACCESS_DENIED, nil)
 	}
 
 	multiChoiceLesson, err := mapper.RequestToMultiChoiceLesson(courseId, request)
 
 	if err != nil {
-		return nil, exception.NewDefaultApiError(responseStatus.CREATE_LESSON_ERROR)
+		return nil, exception.NewApiError(responseStatus.CREATE_LESSON_ERROR, nil)
 	}
 
 	newMultiChoiceLesson, err := lessonService.multiChoiceLessonRepository.Save(multiChoiceLesson)
 
 	if err != nil {
-		return nil, exception.NewDefaultApiError(responseStatus.CREATE_LESSON_ERROR)
+		return nil, exception.NewApiError(responseStatus.CREATE_LESSON_ERROR, nil)
 	}
 
 	lessonInfoResponse, err := mapper.ToMultiChoiceLessonInfoResponse(newMultiChoiceLesson, 0)
 	if err != nil {
-		return nil, exception.NewDefaultApiError(responseStatus.CREATE_LESSON_ERROR)
+		return nil, exception.NewApiError(responseStatus.CREATE_LESSON_ERROR, nil)
 	}
 
 	return lessonInfoResponse, nil
@@ -77,7 +78,7 @@ func (lessonService *MultiChoiceLessonServiceImpl) UpdateQuestions(
 	}
 
 	if !isOwner {
-		return nil, exception.NewDefaultApiError(responseStatus.ACCESS_DENIED)
+		return nil, exception.NewApiError(responseStatus.ACCESS_DENIED, nil)
 	}
 
 	var questions []*entity.MultiChoiceQuestion
@@ -86,12 +87,12 @@ func (lessonService *MultiChoiceLessonServiceImpl) UpdateQuestions(
 
 		answersJSON, err := json.Marshal(requestQuestion.Answers)
 		if err != nil {
-			return nil, exception.NewApiError(responseStatus.JSON_PROCESSING_ERROR, "Failed to marshal answers: "+err.Error())
+			return nil, exception.NewApiError(responseStatus.JSON_PROCESSING_ERROR, errors.New("Failed to marshal answers: "+err.Error()))
 		}
 
 		correctAnswersJSON, err := json.Marshal(requestQuestion.CorrectAnswers)
 		if err != nil {
-			return nil, exception.NewApiError(responseStatus.JSON_PROCESSING_ERROR, "Failed to marshal correct answers: "+err.Error())
+			return nil, exception.NewApiError(responseStatus.JSON_PROCESSING_ERROR, errors.New("Failed to marshal correct answers: "+err.Error()))
 		}
 
 		newQuestion := entity.MultiChoiceQuestion{
