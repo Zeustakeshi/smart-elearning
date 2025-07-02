@@ -53,14 +53,13 @@ func (courseMemberService *CourseMemberServiceImpl) GetAllMember(courseId uint, 
 
 	members, err := courseMemberService.courseMemberRepository.FindAllByCourseId(courseId, page, limit)
 
-	if len(members) == 0 {
-		return []*response.CourseMemberResponse{}, nil
-	}
-
 	if err != nil {
 		return nil, exception.NewApiError(responseCode.GET_COURSE_MEMBERS_ERROR, err)
 	}
 
+	if len(members) == 0 {
+		return []*response.CourseMemberResponse{}, nil
+	}
 	var wg sync.WaitGroup
 	errChan := make(chan error, len(members))
 	resultChan := make(chan *response.CourseMemberResponse, len(members))
