@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:8080/api/v1
-@teacher_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InRlYWNoZXJAZ21haWwuY29tIiwic2NvcGUiOiJURUFDSEVSIiwiZXhwIjoxNzUxNDQ4NjQyLCJpYXQiOjE3NTE0NDE0NDJ9.h86v14HMP8hOCtj18mi12pELUq94rsR7Ei05rjjmh1o
+@teacher_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InRlYWNoZXJAZ21haWwuY29tIiwic2NvcGUiOiJURUFDSEVSIiwiZXhwIjoxNzUxNDgzMjA3LCJpYXQiOjE3NTE0NzYwMDd9.fUZmtS7M81qf9wj-CwMTnEAC2daZxg2WM2wikilwMLY
 @student_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InN0dWRlbnRAZ21haWwuY29tIiwic2NvcGUiOiJTVFVERU5UIiwiZXhwIjoxNzUxNDQ4Njc3LCJpYXQiOjE3NTE0NDE0Nzd9.L2jjDD4QOdLHp8SnbdzXyaLQAKaTxfDlXFrxdzPB_3w
 
 POST {{baseUrl}}/auth/register
@@ -46,3 +46,54 @@ Authorization: Bearer {{student_token}}
 ### get all course member
 GET {{baseUrl}}/teacher/courses/1/members?page=0&limit=10
 Authorization: Bearer {{teacher_token}}
+
+
+### create muilchoice question lesson
+POST {{baseUrl}}/teacher/courses/1/lesson/multichoice
+Authorization: Bearer {{teacher_token}}
+Content-Type: application/json
+
+{
+  "name": "Basic Math Quiz",
+  "duration_minutes": 30,
+  "allow_view_answers_after_submit": true,
+  "allow_view_score_after_submit": true,
+  "anti_cheating_enable": false,
+  "start_time": "2025-07-03T14:00:00+07:00"
+}
+
+
+###
+PUT {{baseUrl}}/teacher/courses/1/lesson/multichoice/questions
+Authorization: Bearer {{teacher_token}}
+Content-Type: application/json
+
+{
+  "lesson_id": 2,
+  "questions": [
+    {
+      "question": "What is 2 + 2?",
+      "answers": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct_answers": [
+        1
+      ]
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "answers": [
+        "Jupiter",
+        "Mars",
+        "Venus",
+        "Mercury"
+      ],
+      "correct_answers": [
+      1
+      ]
+    }
+  ]
+}

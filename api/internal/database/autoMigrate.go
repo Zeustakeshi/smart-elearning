@@ -10,6 +10,8 @@ func AutoMigrate() {
 		&entity.User{},
 		&entity.Course{},
 		&entity.CourseMember{},
+		&entity.MultiChoiceLesson{},
+		&entity.MultiChoiceQuestion{},
 	)
 
 	if err != nil {
