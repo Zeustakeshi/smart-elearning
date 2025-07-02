@@ -40,5 +40,5 @@ var ResponseMessage = map[int]ResponseStatus{
 	INVALID_COURSE_VISIBILITY: {StatusCode: http.StatusBadRequest, Message: "Invalid course visibility."},
 	COURSE_NOT_FOUND:          {StatusCode: http.StatusNotFound, Message: "Course not found."},
 	JOIN_COURSE_ERROR:         {StatusCode: http.StatusInternalServerError, Message: "Join to course failed."},
-	GET_COURSE_MEMBERS_ERROR:  {StatusCode: http.StatusInternalServerError, Message: "Can't not ger course members. Internal server error"},
+	GET_COURSE_MEMBERS_ERROR:  {StatusCode: http.StatusInternalServerError, Message: "Cannot get course members. Internal server error"},
 }
