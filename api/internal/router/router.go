@@ -1,8 +1,10 @@
 package router
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"smart-elearning/internal/middleware"
+	"time"
 )
 
 func NewRouter(
@@ -14,6 +16,14 @@ func NewRouter(
 	var router = gin.New()
 
 	/* GLOBAL MIDDLEWARE CONFIG */
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 	router.Use(middleware.ExceptionMiddleware)
 
 	/* AUTH */
