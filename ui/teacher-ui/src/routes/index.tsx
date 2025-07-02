@@ -17,6 +17,9 @@ function Index() {
         <Link to="/dashboard" className="[&.active]:font-bold">
           Trang giáo viên
         </Link>
+        <Link to="/login" className="[&.active]:font-bold">
+          Đăng nhập
+        </Link>
       </div>
       <h3>Welcome Home!</h3>
     </div>
