@@ -86,12 +86,12 @@ func (lessonService *MultiChoiceLessonServiceImpl) UpdateQuestions(
 
 		answersJSON, err := json.Marshal(requestQuestion.Answers)
 		if err != nil {
-			return nil, err
+			return nil, exception.NewApiError(responseStatus.JSON_PROCESSING_ERROR, "Failed to marshal answers: "+err.Error())
 		}
 
 		correctAnswersJSON, err := json.Marshal(requestQuestion.CorrectAnswers)
 		if err != nil {
-			return nil, err
+			return nil, exception.NewApiError(responseStatus.JSON_PROCESSING_ERROR, "Failed to marshal correct answers: "+err.Error())
 		}
 
 		newQuestion := entity.MultiChoiceQuestion{
