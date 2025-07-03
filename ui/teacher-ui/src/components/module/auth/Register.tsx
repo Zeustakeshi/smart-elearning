@@ -29,7 +29,7 @@ export const Register = ({
       username: "",
       email: "",
       password: "",
-      role: "STUDENT",
+      type: "STUDENT",
     },
   });
 
@@ -38,9 +38,14 @@ export const Register = ({
       const response = await register(values);
       console.log("Registration values:", response);
       toast.success("Đăng ký thành công! Vui lòng đăng nhập.");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Registration error:", error);
-      toast.error("Đăng ký thất bại. Vui lòng thử lại sau.");
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Đăng ký thất bại, vui lòng thử lại.";
+
+      toast.error(`${errorMessage}`);
     }
   }
 
@@ -69,7 +74,7 @@ export const Register = ({
           <FormItem>
             <FormLabel>Tên người dùng</FormLabel>
             <FormControl>
-              <Input placeholder="vi du: minhhieu" {...field} />
+              <Input placeholder="vi du: hoangtuan" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -83,7 +88,7 @@ export const Register = ({
           <FormItem>
             <FormLabel>Email</FormLabel>
             <FormControl>
-              <Input placeholder="m@example.com" {...field} />
+              <Input placeholder="t@example.com" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -118,7 +123,7 @@ export const Register = ({
 
       <FormField
         control={form.control}
-        name="role"
+        name="type"
         render={({ field }) => (
           <FormItem className="space-y-3">
             <FormLabel>Bạn là?</FormLabel>

@@ -29,12 +29,16 @@ export function Login({ className, ...props }: React.ComponentProps<"div">) {
 
   async function onSubmit(values: LoginSchema) {
     try {
-      const response = await login(values);
-      console.log("Đăng nhập thành công:", response);
+      await login(values);
       toast.success("Đăng nhập thành công!");
-    } catch (error) {
-      console.error("Lỗi đăng nhập:", error);
-      toast.error("Lỗi đăng nhập");
+    } catch (error: any) {
+      console.error("Login error:", error);
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Đăng nhập thất bại, vui lòng thử lại.";
+
+      toast.error(`${errorMessage}`);
     }
   }
 

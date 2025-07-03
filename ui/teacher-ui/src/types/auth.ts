@@ -18,7 +18,7 @@ export interface RegisterData {
   email: string;
   username: string;
   password: string;
-  role: "STUDENT" | "TEACHER";
+  type: "STUDENT" | "TEACHER";
 }
 
 export interface LoginData {

@@ -19,13 +19,14 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Decode token lấy roles
-export const getRolesFromToken = (token: string): string => {
+// Decode token
+export const getDataFromToken = (token: string): DecodedToken => {
   try {
+    console.log("Decoding token:", token);
     const decoded: DecodedToken = jwtDecode(token);
-    return decoded.scope;
+    return decoded;
   } catch (error) {
     console.error("Lỗi decode:", error);
-    return "";
+    throw new Error("Invalid token");
   }
 };
