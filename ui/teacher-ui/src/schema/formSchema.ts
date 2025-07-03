@@ -24,7 +24,7 @@ export const registerSchema = z.object({
   password: z.string().min(1, {
     message: "Vui lòng nhập mật khẩu.",
   }),
-  role: z.enum(["STUDENT", "TEACHER"], {
+  type: z.enum(["STUDENT", "TEACHER"], {
     required_error: "Vui lòng chọn vai trò của bạn.",
   }),
 });

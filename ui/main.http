@@ -1,11 +1,12 @@
-@baseUrl = http://34.66.124.67/api/v1
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6ImhpZmV1MGRAZ21haWwuY29tIiwic2NvcGUiOiJTVFVERU5UIiwiZXhwIjoxNzUxNDAyMjE0LCJpYXQiOjE3NTEzOTUwMTR9.pSFrN49cNq9RdT_7uOXEovTNn9WKdBc8m2ghXPwDglU
+@baseUrl = http://34.30.92.193/api/v1
+@teacher_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InRlYWNoZXJAZ21haWwuY29tIiwic2NvcGUiOiJURUFDSEVSIiwiZXhwIjoxNzUxNDgzMjA3LCJpYXQiOjE3NTE0NzYwMDd9.fUZmtS7M81qf9wj-CwMTnEAC2daZxg2WM2wikilwMLY
+@student_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InN0dWRlbnRAZ21haWwuY29tIiwic2NvcGUiOiJTVFVERU5UIiwiZXhwIjoxNzUxNDQ4Njc3LCJpYXQiOjE3NTE0NDE0Nzd9.L2jjDD4QOdLHp8SnbdzXyaLQAKaTxfDlXFrxdzPB_3w
 
 POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-    "email" : "hifeu0d@gmail.com",
+    "email" : "studentABC@gmail.com",
     "username": "Minh Hiếu",
     "password" : "123456",
     "type": "STUDENT" 
@@ -16,14 +17,14 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "hifeu0d@gmail.com",
-    "password": "123456"
+    "email": "vohoangtuan1980t@gmail.com",
+    "password": "123456@abc"
 }
 
 
 ###
 POST {{baseUrl}}/teacher/courses
-Authorization: Bearer {{token}}
+Authorization: Bearer {{teacher_token}}
 Content-Type: application/json
 
 {
@@ -34,4 +35,65 @@ Content-Type: application/json
 
 ###
 GET {{baseUrl}}/teacher/courses?page=0&limit=2
-Authorization: Bearer {{token}} 
+Authorization: Bearer {{student_token}}
+
+
+### Join course
+POST {{baseUrl}}/student/courses/join?code=EkyLDbw1kkJAOPVUzIFop
+Authorization: Bearer {{student_token}}
+
+
+### get all course member
+GET {{baseUrl}}/teacher/courses/1/members?page=0&limit=10
+Authorization: Bearer {{teacher_token}}
+
+
+### create multichoice question lesson
+POST {{baseUrl}}/teacher/courses/1/lesson/multichoice
+Authorization: Bearer {{teacher_token}}
+Content-Type: application/json
+
+{
+  "name": "Basic Math Quiz",
+  "duration_minutes": 30,
+  "allow_view_answers_after_submit": true,
+  "allow_view_score_after_submit": true,
+  "anti_cheating_enable": false,
+  "start_time": "2025-07-03T14:00:00+07:00"
+}
+
+
+###
+PUT {{baseUrl}}/teacher/courses/1/lesson/multichoice/questions
+Authorization: Bearer {{teacher_token}}
+Content-Type: application/json
+
+{
+  "lesson_id": 2,
+  "questions": [
+    {
+      "question": "What is 2 + 2?",
+      "answers": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct_answers": [
+        1
+      ]
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "answers": [
+        "Jupiter",
+        "Mars",
+        "Venus",
+        "Mercury"
+      ],
+      "correct_answers": [
+      1
+      ]
+    }
+  ]
+}
