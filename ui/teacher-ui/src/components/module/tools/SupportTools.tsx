@@ -85,7 +85,7 @@ const SupportTools = () => {
                 </div>
               </div>
               <div className=" w-10 h-10">
-                <img src={Star} alt="" />
+                <img src={Star} alt="favorite icon" />
               </div>
             </div>
           </div>
