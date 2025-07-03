@@ -70,7 +70,7 @@ const SupportTools = () => {
             <div className="absolute inset-0 p-2 flex justify-between items-center ">
               <div className=" flex gap-3 items-center h-full ">
                 <div className="w-10 h-10">
-                  <img src={MathTool} alt="" />
+                  <img src={MathTool} alt="Math tool icon" />
                 </div>
                 <div>
                   <p className="hover:cursor-pointer hover:font-semibold hover:scale-110 transition-all duration-300">
