@@ -64,11 +64,11 @@ const SupportTools = () => {
       </div>
       <div className="grid grid-cols-3 gap-4 rounded-xl mt-4">
         {DataCardInfo.map((card) => (
-          <div className=" relative  h-20 rounded-xl border-2 p-2 flex justify-between items-center group overflow-hidden hover:cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-transform duration-300">
+          <button className="relative h-20 rounded-xl border-2 p-2 flex justify-between items-center group overflow-hidden hover:cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-transform duration-300" aria-label={`Card for ${card.name}`}>
             {/* div để làm hiệu ứng tràn màu ra ngoài */}
-            <div className="absolute  inset-0 rounded-xl bg-gray-100 scale-x-0  group-hover:scale-x-110 transition-transform duration-300 "></div>
-            <div className="absolute inset-0 p-2 flex justify-between items-center ">
-              <div className=" flex gap-3 items-center h-full ">
+            <div className="absolute inset-0 rounded-xl bg-gray-100 scale-x-0 group-hover:scale-x-110 transition-transform duration-300"></div>
+            <div className="absolute inset-0 p-2 flex justify-between items-center">
+              <div className="flex gap-3 items-center h-full">
                 <div className="w-10 h-10">
                   <img src={MathTool} alt="Math tool icon" />
                 </div>
