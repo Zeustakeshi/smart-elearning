@@ -1,3 +1,5 @@
+
+import SupportTools from "@/components/module/tools/SupportTools";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/dashboard/_dashboard/tools")({
@@ -5,5 +7,7 @@ export const Route = createFileRoute("/dashboard/_dashboard/tools")({
 });
 
 function RouteComponent() {
-  return <div>Trang công cụ AI</div>;
+  return <div>
+    <SupportTools></SupportTools>
+  </div>;
 }
