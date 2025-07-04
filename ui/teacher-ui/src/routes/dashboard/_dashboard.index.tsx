@@ -1,3 +1,4 @@
+import { TeacherDashboardPage } from "@/components/module/dashboard-landing/TeacherDashboardPage";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/dashboard/_dashboard/")({
@@ -7,7 +8,7 @@ export const Route = createFileRoute("/dashboard/_dashboard/")({
 function RouteComponent() {
   return (
     <div>
-      <h1>Trang Quản Lý Lớp Học </h1>
+      <TeacherDashboardPage />
     </div>
   );
 }
