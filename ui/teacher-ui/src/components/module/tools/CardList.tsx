@@ -5,6 +5,7 @@ const CardList = () => {
     <div className="grid grid-cols-3 gap-4 mt-4">
       {NameCard.map((card) => (
         <Card
+          key={card.id}
           iconleft={card.iconleft}
           title={card.title}
           subtitle={card.subtitle}
