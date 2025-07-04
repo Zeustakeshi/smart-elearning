@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
-  "/dashboard/_dashboard/classes/_dashboard/classes/"
+  "/dashboard/_dashboard/course/_dashboard/course/"
 )({
   component: RouteComponent,
 });
@@ -9,7 +9,7 @@ export const Route = createFileRoute(
 function RouteComponent() {
   return (
     <div>
-      <Link to="/dashboard/classes/classes/students">đến quản lý học sinh</Link>
+      <Link to="/dashboard/course/course/students">đến quản lý học sinh</Link>
     </div>
   );
 }
