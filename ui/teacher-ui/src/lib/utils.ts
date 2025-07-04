@@ -11,3 +11,11 @@ export const formatCurrency = (amount: number) => {
     currency: "VND",
   }).format(amount);
 };
+
+export const getInitials = (name: string): string => {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+};

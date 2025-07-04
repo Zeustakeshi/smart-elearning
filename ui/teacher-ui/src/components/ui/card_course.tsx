@@ -1,9 +1,9 @@
 import type { CourseCardProps } from "@/types/course.data";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Badge } from "./badge";
-import { Card, CardContent, CardFooter, CardHeader } from "./card";
 import { Crown, PlayCircle, Clock, Star } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
+import { Card1, CardContent1, CardFooter1, CardHeader1 } from "./card_custom";
 
 export const CardCourse = ({
   imageUrl,
@@ -46,15 +46,13 @@ export const CardCourse = ({
   };
 
   return (
-    <Card className="w-80 rounded-xl border overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
-      {/* Phần hình ảnh */}
-      <CardHeader className="p-0 relative">
+    <Card1 className="w-80 rounded-xl border overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
+      <CardHeader1 className="p-0 relative">
         <img src={imageUrl} alt={title} className="w-full h-40 object-cover" />
         {renderBadge()}
-      </CardHeader>
+      </CardHeader1>
 
-      {/* Phần nội dung */}
-      <CardContent className="p-4 flex-grow">
+      <CardContent1 className="p-4 flex-grow">
         <h3 className="text-lg font-bold">{title}</h3>
         <div className="flex items-center gap-2 mt-2">
           {isFree ? (
@@ -74,10 +72,9 @@ export const CardCourse = ({
             </>
           )}
         </div>
-      </CardContent>
+      </CardContent1>
 
-      {/* Phần chân trang */}
-      <CardFooter className="p-4 pt-0 flex justify-between items-center text-sm text-gray-600">
+      <CardFooter1 className="p-4 pt-0 flex justify-between items-center text-sm text-gray-600">
         <div className="flex items-center gap-2">
           <Avatar className="w-6 h-6">
             <AvatarImage src={authorImageUrl} alt={authorName} />
@@ -95,7 +92,7 @@ export const CardCourse = ({
             <span>{duration}</span>
           </div>
         </div>
-      </CardFooter>
-    </Card>
+      </CardFooter1>
+    </Card1>
   );
 };
