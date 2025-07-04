@@ -7,7 +7,6 @@ const TagList: React.FC = () => {
 
   const handleClick = (id: number) => {
     setIsSelected(id);
-    console.log(id, isSelected);
   };
 
   return (
