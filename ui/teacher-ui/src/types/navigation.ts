@@ -1,4 +1,4 @@
-import { SquareTerminal, Frame } from "lucide-react";
+import { SquareTerminal, Bot, Folder, User, MessageCircle } from "lucide-react";
 
 export const routeData = {
   user: {
@@ -24,22 +24,22 @@ export const routeData = {
     {
       name: "Công cụ",
       url: "/dashboard/tools",
-      icon: Frame,
+      icon: Bot,
     },
     {
       name: "Tài liệu",
       url: "/dashboard/documents",
-      icon: Frame,
+      icon: Folder,
     },
     {
       name: "Chat",
       url: "/dashboard/chat",
-      icon: Frame,
+      icon: MessageCircle,
     },
     {
       name: "Tài khoản",
       url: "/dashboard/account",
-      icon: Frame,
+      icon: User,
     },
   ],
 };
