@@ -24,6 +24,7 @@ import { Route as DashboardDashboardAccountRouteImport } from './routes/dashboar
 import { Route as DashboardDashboardCourseDashboardCourseRouteImport } from './routes/dashboard/_dashboard.course/_dashboard.course'
 import { Route as DashboardDashboardCourseDashboardCourseIndexRouteImport } from './routes/dashboard/_dashboard.course/_dashboard.course.index'
 import { Route as DashboardDashboardCourseDashboardCourseStudentsRouteImport } from './routes/dashboard/_dashboard.course/_dashboard.course.students'
+import { Route as DashboardDashboardCourseDashboardCourseListRouteImport } from './routes/dashboard/_dashboard.course/_dashboard.course.list'
 
 const DashboardRouteImport = createFileRoute('/dashboard')()
 
@@ -101,6 +102,12 @@ const DashboardDashboardCourseDashboardCourseStudentsRoute =
     path: '/students',
     getParentRoute: () => DashboardDashboardCourseDashboardCourseRoute,
   } as any)
+const DashboardDashboardCourseDashboardCourseListRoute =
+  DashboardDashboardCourseDashboardCourseListRouteImport.update({
+    id: '/list',
+    path: '/list',
+    getParentRoute: () => DashboardDashboardCourseDashboardCourseRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/tools': typeof DashboardDashboardToolsRoute
   '/dashboard/': typeof DashboardDashboardIndexRoute
   '/dashboard/course/course': typeof DashboardDashboardCourseDashboardCourseRouteWithChildren
+  '/dashboard/course/course/list': typeof DashboardDashboardCourseDashboardCourseListRoute
   '/dashboard/course/course/students': typeof DashboardDashboardCourseDashboardCourseStudentsRoute
   '/dashboard/course/course/': typeof DashboardDashboardCourseDashboardCourseIndexRoute
 }
@@ -127,6 +135,7 @@ export interface FileRoutesByTo {
   '/dashboard/chat': typeof DashboardDashboardChatRoute
   '/dashboard/documents': typeof DashboardDashboardDocumentsRoute
   '/dashboard/tools': typeof DashboardDashboardToolsRoute
+  '/dashboard/course/course/list': typeof DashboardDashboardCourseDashboardCourseListRoute
   '/dashboard/course/course/students': typeof DashboardDashboardCourseDashboardCourseStudentsRoute
   '/dashboard/course/course': typeof DashboardDashboardCourseDashboardCourseIndexRoute
 }
@@ -144,6 +153,7 @@ export interface FileRoutesById {
   '/dashboard/_dashboard/tools': typeof DashboardDashboardToolsRoute
   '/dashboard/_dashboard/': typeof DashboardDashboardIndexRoute
   '/dashboard/_dashboard/course/_dashboard/course': typeof DashboardDashboardCourseDashboardCourseRouteWithChildren
+  '/dashboard/_dashboard/course/_dashboard/course/list': typeof DashboardDashboardCourseDashboardCourseListRoute
   '/dashboard/_dashboard/course/_dashboard/course/students': typeof DashboardDashboardCourseDashboardCourseStudentsRoute
   '/dashboard/_dashboard/course/_dashboard/course/': typeof DashboardDashboardCourseDashboardCourseIndexRoute
 }
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/dashboard/tools'
     | '/dashboard/'
     | '/dashboard/course/course'
+    | '/dashboard/course/course/list'
     | '/dashboard/course/course/students'
     | '/dashboard/course/course/'
   fileRoutesByTo: FileRoutesByTo
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/dashboard/chat'
     | '/dashboard/documents'
     | '/dashboard/tools'
+    | '/dashboard/course/course/list'
     | '/dashboard/course/course/students'
     | '/dashboard/course/course'
   id:
@@ -190,6 +202,7 @@ export interface FileRouteTypes {
     | '/dashboard/_dashboard/tools'
     | '/dashboard/_dashboard/'
     | '/dashboard/_dashboard/course/_dashboard/course'
+    | '/dashboard/_dashboard/course/_dashboard/course/list'
     | '/dashboard/_dashboard/course/_dashboard/course/students'
     | '/dashboard/_dashboard/course/_dashboard/course/'
   fileRoutesById: FileRoutesById
@@ -302,16 +315,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDashboardCourseDashboardCourseStudentsRouteImport
       parentRoute: typeof DashboardDashboardCourseDashboardCourseRoute
     }
+    '/dashboard/_dashboard/course/_dashboard/course/list': {
+      id: '/dashboard/_dashboard/course/_dashboard/course/list'
+      path: '/list'
+      fullPath: '/dashboard/course/course/list'
+      preLoaderRoute: typeof DashboardDashboardCourseDashboardCourseListRouteImport
+      parentRoute: typeof DashboardDashboardCourseDashboardCourseRoute
+    }
   }
 }
 
 interface DashboardDashboardCourseDashboardCourseRouteChildren {
+  DashboardDashboardCourseDashboardCourseListRoute: typeof DashboardDashboardCourseDashboardCourseListRoute
   DashboardDashboardCourseDashboardCourseStudentsRoute: typeof DashboardDashboardCourseDashboardCourseStudentsRoute
   DashboardDashboardCourseDashboardCourseIndexRoute: typeof DashboardDashboardCourseDashboardCourseIndexRoute
 }
 
 const DashboardDashboardCourseDashboardCourseRouteChildren: DashboardDashboardCourseDashboardCourseRouteChildren =
   {
+    DashboardDashboardCourseDashboardCourseListRoute:
+      DashboardDashboardCourseDashboardCourseListRoute,
     DashboardDashboardCourseDashboardCourseStudentsRoute:
       DashboardDashboardCourseDashboardCourseStudentsRoute,
     DashboardDashboardCourseDashboardCourseIndexRoute:
