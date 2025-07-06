@@ -1,8 +1,8 @@
-import { MyClassroom } from "@/components/module/MyClassroom/MyClassroom";
+import { InterfaceCourse } from "@/components/module/course/InterfaceCourse";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
-  "/dashboard/_dashboard/course/_dashboard/course/"
+  "/dashboard/_dashboard/course/_dashboard/course/list"
 )({
   component: RouteComponent,
 });
@@ -10,7 +10,7 @@ export const Route = createFileRoute(
 function RouteComponent() {
   return (
     <div>
-      <MyClassroom />
+      <InterfaceCourse />
     </div>
   );
 }
