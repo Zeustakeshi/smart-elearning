@@ -1,3 +1,4 @@
+import { MyDocuments } from "@/components/module/doc/MyDocuments";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/dashboard/_dashboard/documents")({
@@ -5,5 +6,9 @@ export const Route = createFileRoute("/dashboard/_dashboard/documents")({
 });
 
 function RouteComponent() {
-  return <div>Tài liệu</div>;
+  return (
+    <div>
+      <MyDocuments />
+    </div>
+  );
 }
