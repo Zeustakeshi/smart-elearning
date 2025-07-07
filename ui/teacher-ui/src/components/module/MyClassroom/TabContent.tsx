@@ -2,8 +2,12 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { BookIcon, File } from "lucide-react";
+import { AddLesson } from "./modal/AddLesson";
+import { DocumentData } from "@/types/mydoc";
+import { DocCard } from "../doc/DocCard";
 
 function TabContent() {
+  const dataDoc = DocumentData;
   return (
     <Tabs defaultValue="tab-1">
       <ScrollArea>
@@ -36,9 +40,16 @@ function TabContent() {
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
       <TabsContent value="tab-1">
-        <p className="p-4 pt-1 text-center text-xs text-muted-foreground">
-          Bài Học
-        </p>
+        <div className="flex flex-col justify-center space-y-3">
+          <div className="w-full max-w-2xl space-y-4 font-mono ">
+            {dataDoc.map((plan) => (
+              <DocCard key={plan.id} plan={plan} />
+            ))}
+          </div>
+          <div>
+            <AddLesson />
+          </div>
+        </div>
       </TabsContent>
       <TabsContent value="tab-2">
         <p className="p-4 pt-1 text-center text-xs text-muted-foreground">

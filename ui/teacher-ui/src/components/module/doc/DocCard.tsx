@@ -12,9 +12,9 @@ import { FileText, MoreHorizontal, Share2, Trash2 } from "lucide-react";
 
 export const DocCard = ({ plan }: { plan: DocumentType }) => {
   return (
-    <Card className="w-full">
-      <CardContent className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+    <Card className="w-full ">
+      <CardContent className="flex items-center justify-between h-full p-4">
+        <div className="flex items-center gap-4 ">
           <div className="flex flex-col items-center justify-center w-16 h-16 border-2  border-red-500 rounded-lg bg-red-50/50">
             <FileText className="w-6 h-6 text-red-600" strokeWidth={1.5} />
             <span className="text-sm font-semibold text-red-600 tracking-wider">
