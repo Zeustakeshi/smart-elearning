@@ -1,11 +1,12 @@
 package impl
 
 import (
-	"github.com/golang-jwt/jwt/v5"
 	"smart-elearning/internal/config"
 	"smart-elearning/internal/dto/common"
 	"smart-elearning/internal/entity"
 	"time"
+
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type JwtServiceImpl struct {
@@ -17,7 +18,11 @@ func NewJwtService() *JwtServiceImpl {
 
 func (*JwtServiceImpl) GenerateJwt(account *entity.User) (string, error) {
 	jwtSecret := []byte(config.Configs.Jwt.SecretKey)
-	jwtExpireIn := config.Configs.Jwt.ExpireTime
+	jwtExpireIn := config.Configs.Jwt.ExpireTime 
+
+	if jwtExpireIn == 0 {
+		jwtExpireIn = 2
+	}
 
 	claims := common.JwtClaims{
 		Sub: account.ID,
