@@ -28,15 +28,7 @@ export interface LoginData {
 
 export interface User {
   id: string;
-  name: string;
-  email: string;
-}
-export interface DecodedToken {
-  sub: number;
-  user_id: number;
   username: string;
   email: string;
-  scope: string;
-  exp: number;
-  iat: number;
+  avatar?: string;
 }
