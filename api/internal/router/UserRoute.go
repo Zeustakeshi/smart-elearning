@@ -15,6 +15,10 @@ func NewUserRoute(userService service.UserService) *UserRoute {
 	return &UserRoute{userService: userService}
 }
 
+func (route *UserRoute) GetUserInfo(c *gin.Context) {
+
+}
+
 func (userRoute *UserRoute) CreateUser(c *gin.Context) {
 	var request dto.CreateUserRequest
 

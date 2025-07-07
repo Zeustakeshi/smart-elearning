@@ -4,6 +4,7 @@ import (
 	"errors"
 	"smart-elearning/internal/common/constants"
 	"smart-elearning/internal/config"
+	"smart-elearning/internal/dto/common"
 	"smart-elearning/internal/dto/request"
 	"smart-elearning/internal/dto/response"
 	"smart-elearning/internal/entity"
@@ -101,6 +102,22 @@ func (userService *UserServiceImpl) Login(request *request.LoginRequest) (*respo
 	return &response.TokenResponse{
 		Value:    jwt,
 		ExpireIn: tokenExpireIn,
+	}, nil
+
+}
+
+func (userService *UserServiceImpl) GetUserInfo(user *common.ClaimUser) (*response.UserInfoResponse, error) {
+	userInfo, err := userService.repository.FindByEmail(user.Email)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &response.UserInfoResponse{
+		Id:       userInfo.ID,
+		Username: userInfo.Username,
+		Avatar:   userInfo.Avatar,
+		Role:     userInfo.Role,
 	}, nil
 
 }
