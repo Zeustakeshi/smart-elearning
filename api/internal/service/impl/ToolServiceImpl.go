@@ -56,7 +56,7 @@ func (service *ToolServiceImpl) GenerateLessonPlan(
 		for {
 			select {
 			case <-ctx.Done():
-				ch <- fmt.Sprintf("<TIMEOUT>%v</TIMEOUT>", err)
+				ch <- fmt.Sprintf("<TIMEOUT>%v</TIMEOUT>", ctx.Err())
 				return
 			default:
 				resp, err := stream.Recv()
