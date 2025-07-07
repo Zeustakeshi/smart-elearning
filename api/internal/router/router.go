@@ -35,6 +35,14 @@ func NewRouter(
 		authGroup.POST("login", userRoute.Login)
 	}
 
+	/* USER */
+	userGroup := router.Group("/api/v1/user")
+	{
+		userGroup.Use(middleware.SecurityMiddleWare)
+
+		userGroup.GET("/me", userRoute.GetUserInfo)
+	}
+
 	/* STUDENT  */
 	studentGroup := router.Group("api/v1/student")
 	{
