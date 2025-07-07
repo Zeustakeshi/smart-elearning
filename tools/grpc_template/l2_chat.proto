@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package l2_chat;
+
+service L2 {
+  rpc Grpc_Chat (ChatMessage) returns (stream ChatResponse) {}
+}
+
+message ChatMessage {
+  string user_id = 1;
+  string content = 2;
+}
+
+message ChatResponse {
+  string content = 1;
+}
