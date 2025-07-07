@@ -16,6 +16,8 @@ func LoadConfig() {
 	viper.BindEnv("database.postgresql.db_user", "DB_USER")
 	viper.BindEnv("database.postgresql.db_password", "DB_PASSWORD")
 	viper.BindEnv("jwt.secret_key", "JWT_SECRET")
+	viper.BindEnv("services.l2.grpc.host", "L2_GRPC_HOST")
+	viper.BindEnv("services.l2.grpc.port", "L2_GRPC_PORT")
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Logger.Error("Read configs failed: " + err.Error())

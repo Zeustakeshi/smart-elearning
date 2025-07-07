@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "smart-elearning/proto";
+
+package lesson_plan;
+
+service L2_tools {
+  rpc GenerateLessonPlan (LessonPlanRequest) returns (stream LessonPlanResponse) {}
+}
+
+message LessonPlanRequest {
+  string title = 1;
+  string description = 3;
+  string file_url = 2;
+  string teacher_note = 4;
+  string format = 5;
+  uint64 teacher_id = 6;
+  optional uint64 course_id = 7;
+}
+
+message LessonPlanResponse{
+  string content = 1;
+}

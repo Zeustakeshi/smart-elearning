@@ -3,6 +3,7 @@ package initialize
 import (
 	"smart-elearning/internal/config"
 	"smart-elearning/internal/database"
+	"smart-elearning/internal/grpc/client"
 	"smart-elearning/internal/repository"
 	"smart-elearning/internal/router"
 	"smart-elearning/internal/service/impl"
@@ -20,6 +21,9 @@ func Run() {
 	/* DATABASE CONFIG */
 	database.ConnectToDatabase()
 	database.AutoMigrate()
+
+	/* GRPC Configs */
+	client.InitL2Client()
 
 	/* DI CONFIG */
 
@@ -41,18 +45,21 @@ func Run() {
 		multiChoiceLessonRepository,
 		multiChoiceQuestionRepository,
 	)
+	toolService := impl.NewToolService()
 
 	/* ROUTE */
 	userRoute := router.NewUserRoute(userService)
 	courseRoute := router.NewCourseRoute(courseService)
 	courseMemberRoute := router.NewCourseMemberRoute(courseMemberService)
 	multiChoiceLessonRoute := router.NewMultiChoiceLessonRoute(multiChoiceLessonService)
+	toolRoute := router.NewToolRote(toolService)
 
 	r := router.NewRouter(
 		userRoute,
 		courseRoute,
 		courseMemberRoute,
 		multiChoiceLessonRoute,
+		toolRoute,
 	)
 
 	/* START APPLICATION */
