@@ -1,26 +1,34 @@
 @baseUrl = http://34.46.251.166/api/v1
-@teacher_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InRlYWNoZXJAZ21haWwuY29tIiwic2NvcGUiOiJURUFDSEVSIiwiZXhwIjoxNzUxNDgzMjA3LCJpYXQiOjE3NTE0NzYwMDd9.fUZmtS7M81qf9wj-CwMTnEAC2daZxg2WM2wikilwMLY
-@student_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InN0dWRlbnRAZ21haWwuY29tIiwic2NvcGUiOiJTVFVERU5UIiwiZXhwIjoxNzUxNDQ4Njc3LCJpYXQiOjE3NTE0NDE0Nzd9.L2jjDD4QOdLHp8SnbdzXyaLQAKaTxfDlXFrxdzPB_3w
+@teacher_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InRlYWNoZXJAZ21haWwuY29tIiwic2NvcGUiOiJURUFDSEVSIiwiZXhwIjoxNzUxODcwOTU4LCJpYXQiOjE3NTE4NjM3NTh9.yNeBaSSJvsprdYVDvnv2sfREJHLLlwJZGVm8dZ-J79g
+
+@student_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InN0dWRlbnRBQkNAZ21haWwuY29tIiwic2NvcGUiOiJTVFVERU5UIiwiZXhwIjoxNzUxODcwOTAwLCJpYXQiOjE3NTE4NjM3MDB9.5u8yaAUkhsqwvDw25sVZcpN4KH8-Rv78K619LsVI7dQ
+
+
+### Register
 
 POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-    "email" : "studentABC@gmail.com",
+    "email" : "teacher@gmail.com",
     "username": "Minh Hiếu",
     "password" : "123456",
-    "type": "STUDENT" 
+    "type": "TEACHER" 
 }
 
-###
+### Login
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "vohoangtuan1980t@gmail.com",
-    "password": "123456@abc"
+    "email": "studentABC@gmail.com",
+    "password": "123456"
 }
 
+
+### Get user info
+GET {{baseUrl}}/user/me
+Authorization: Bearer {{student_token}}
 
 ###
 POST {{baseUrl}}/teacher/courses
@@ -35,7 +43,7 @@ Content-Type: application/json
 
 ###
 GET {{baseUrl}}/teacher/courses?page=0&limit=2
-Authorization: Bearer {{student_token}}
+Authorization: Bearer {{teacher_token}}
 
 
 ### Join course
@@ -63,7 +71,7 @@ Content-Type: application/json
 }
 
 
-###
+### 
 PUT {{baseUrl}}/teacher/courses/1/lesson/multichoice/questions
 Authorization: Bearer {{teacher_token}}
 Content-Type: application/json
@@ -96,4 +104,17 @@ Content-Type: application/json
       ]
     }
   ]
+}
+
+####
+POST {{baseUrl}}/api/v1/teacher/tools/lesson-plan/generate
+Authorization: Bearer {{teacher_token}}
+Content-Type: application/json
+
+{
+  "title": "",
+  "description": "",
+  "teacher_note": "",
+  "format": "",
+  "course_id": 1
 }
