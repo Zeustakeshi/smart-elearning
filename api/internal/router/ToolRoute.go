@@ -34,7 +34,7 @@ func (route *ToolRoute) GenerateLessonPlan(c *gin.Context) {
 		return
 	}
 
-	var request *dto.GenerateLessonPlanRequest
+	request := new(dto.GenerateLessonPlanRequest)
 
 	if err := c.ShouldBindJSON(request); err != nil {
 		_ = c.Error(err)
