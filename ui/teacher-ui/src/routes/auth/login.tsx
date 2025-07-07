@@ -1,7 +1,15 @@
 import { Login } from "@/components/module/auth/Login";
-import { createFileRoute } from "@tanstack/react-router";
+import { isAuthenticated } from "@/services/authServices";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import toast from "react-hot-toast";
 
 export const Route = createFileRoute("/auth/login")({
+  beforeLoad: async () => {
+    if (isAuthenticated()) {
+      toast.error("Bạn đã đăng nhập rồi!");
+      throw redirect({ to: "/dashboard" });
+    }
+  },
   component: RouteComponent,
 });
 
