@@ -5,6 +5,7 @@ import (
 	dto "smart-elearning/internal/dto/request"
 	"smart-elearning/internal/service"
 	responseStatus "smart-elearning/pkg/response"
+	"smart-elearning/pkg/utils"
 )
 
 type UserRoute struct {
@@ -16,6 +17,21 @@ func NewUserRoute(userService service.UserService) *UserRoute {
 }
 
 func (route *UserRoute) GetUserInfo(c *gin.Context) {
+	user, err := utils.GetClaimUser(c)
+
+	if err != nil {
+		_ = c.Error(err)
+		return
+	}
+
+	userInfo, err := route.userService.GetUserInfo(user)
+
+	if err != nil {
+		_ = c.Error(err)
+		return
+	}
+
+	responseStatus.ResponseSuccess(c, responseStatus.SUCCESS, userInfo)
 
 }
 
