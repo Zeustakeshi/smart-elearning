@@ -12,6 +12,7 @@ func NewRouter(
 	courseRoute *CourseRoute,
 	courseMemberRoute *CourseMemberRoute,
 	multiChoiceLessonRoute *MultiChoiceLessonRoute,
+	toolRoute *ToolRoute,
 ) *gin.Engine {
 
 	var router = gin.New()
@@ -60,6 +61,9 @@ func NewRouter(
 		/* COURSE LESSON */
 		teacherGroup.POST("courses/:courseId/lesson/multichoice", multiChoiceLessonRoute.CreateLesson)
 		teacherGroup.PUT("courses/:courseId/lesson/multichoice/questions", multiChoiceLessonRoute.UpdateQuestion)
+
+		/* ROUTE */
+		teacherGroup.POST("/tools/lesson-plan/generate", toolRoute.GenerateLessonPlan)
 	}
 
 	return router

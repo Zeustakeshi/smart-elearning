@@ -9,6 +9,16 @@ type Config struct {
 	Database  DatabaseConfig  `mapstructure:"database"`
 	Jwt       JwtConfig       `mapstructure:"jwt"`
 	Resources ResourcesConfig `mapstructure:"resources"`
+	Services  ServicesConfig  `mapstructure:"services"`
+}
+
+type ServicesConfig struct {
+	L2Service struct {
+		Grpc struct {
+			Host string `mapstructure:"host"`
+			Port int    `mapstructure:"port"`
+		} `mapstructure:"grpc"`
+	} `mapstructure:"l2"`
 }
 
 type ResourcesConfig struct {
