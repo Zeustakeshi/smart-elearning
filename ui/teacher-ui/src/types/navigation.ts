@@ -15,6 +15,7 @@ export const routeData = {
       isActive: false,
       items: [
         { title: "Lớp học", url: "/dashboard/course/course " },
+
         { title: "Starred", url: "#" },
         { title: "Settings", url: "#" },
       ],

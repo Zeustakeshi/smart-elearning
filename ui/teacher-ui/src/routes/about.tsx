@@ -1,4 +1,5 @@
 import { CardCourse } from "@/components/ui/card_course";
+import { isAuthenticated } from "@/services/authServices";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about")({
@@ -6,6 +7,13 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  // Logging login status before rendering
+  if (isAuthenticated()) {
+    console.log("Đã đăng nhập");
+  } else {
+    console.log("Chưa đăng nhập");
+  }
+
   return (
     <div className="flex items-center justify-center gap-4 p-4">
       <CardCourse

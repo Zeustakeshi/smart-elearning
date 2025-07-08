@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  app:
+    image: zeustakeshi/smart-elearning-backend:pr-34
+    environment:
+      DB_PASSWORD: 123456
+      DB_URL: dv
+      DB_USER: local-user
+      JWT_SECRET: 65ef1c20ba05d2b6769ed9a8958b6e7f6382c3067ae930a309c7ce6ff956c032
+      L2_GRPC_HOST: localhost
+      L2_GRPC_PORT: 12
+    ports:
+      - "80:8080"
+
