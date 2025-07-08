@@ -11,10 +11,10 @@ export const routeData = {
     {
       title: "Quản lý lớp học",
       icon: SquareTerminal,
-      url: "/dashboard/classes/classes",
+      url: "/dashboard/course/course ",
       isActive: false,
       items: [
-        { title: "Lớp học", url: "/dashboard/classes/classes" },
+        { title: "Lớp học", url: "/dashboard/course/course " },
         { title: "Starred", url: "#" },
         { title: "Settings", url: "#" },
       ],
