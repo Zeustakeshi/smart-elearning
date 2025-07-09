@@ -7,7 +7,7 @@ type Props = {};
 
 const MainSidebar = ({}: Props) => {
     return (
-        <div className="sticky top-[96px]  py-4 flex flex-col justify-between gap-32 ">
+        <div className="sticky top-[74px]  py-4 flex flex-col justify-between gap-32 ">
             <div className="flex flex-col justify-start items-center gap-2">
                 <MainSidebarItem to="/" icon={<HiHome />} label="Trang chủ" />
                 <MainSidebarItem

@@ -31,6 +31,7 @@ const Button = ({
     children,
     variant = BtnVariant.PRIMARY,
     to,
+    disabled,
     ...props
 }: Props) => {
     const router = useRouter();
@@ -49,7 +50,9 @@ const Button = ({
                 "cursor-pointer hover:opacity-90 transition-all",
                 "px-4 py-2 text-center rounded-2xl",
                 buttonStyles[variant],
-                "",
+                {
+                    "!opacity-50 !cursor-none !select-none": disabled,
+                },
                 className
             )}
             {...props}

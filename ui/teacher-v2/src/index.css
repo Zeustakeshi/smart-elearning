@@ -36,3 +36,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.shiki {
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: "Fira Code", monospace;
+}

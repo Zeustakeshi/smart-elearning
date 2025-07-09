@@ -127,7 +127,6 @@ function RouteComponent() {
                         >
                             Trở về
                         </Button>
-                        ``
                         <Button>Tạo khóa học</Button>
                     </div>
                 </form>
