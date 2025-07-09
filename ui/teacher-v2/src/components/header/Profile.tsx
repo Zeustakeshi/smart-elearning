@@ -5,8 +5,12 @@ type Props = {};
 const Profile = ({}: Props) => {
     return (
         <div className="flex gap-2 justify-end items-center">
-            <Button variant="outline">Đăng ký</Button>
-            <Button variant="primary">Đăng nhập</Button>
+            <Button to="/auth/register" variant="outline">
+                Đăng ký
+            </Button>
+            <Button to="/auth/login" variant="primary">
+                Đăng nhập
+            </Button>
         </div>
     );
 };
