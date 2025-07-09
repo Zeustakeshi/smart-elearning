@@ -16,8 +16,8 @@ Component `Button` là một component đa dụng và có thể tái sử dụng
 ### Các thuộc tính (Props)
 
 | Thuộc tính  | Kiểu                   | Mặc định      | Mô tả                                                                                                 |
-| :---------- | :--------------------- | :------------ | :---------------------------------------------------------------------------------------------------- | ----------- | --------------------------- |
-| `variant`   | `'primary'`            | `'secondary'` | `'outline'`                                                                                           | `'primary'` | Xác định kiểu dáng của nút. |
+|-------------|------------------------|---------------|-------------------------------------------------------------------------------------------------------|
+| `variant`   | `'primary'` \| `'secondary'` \| `'outline'` | `'primary'` | Xác định kiểu dáng của nút.                                                                          |
 | `to`        | `string`               | `undefined`   | Nếu được cung cấp, nút sẽ hoạt động như một liên kết và điều hướng đến đường dẫn này khi được nhấp.   |
 | `children`  | `ReactNode`            | `undefined`   | Nội dung được hiển thị bên trong nút (văn bản, icon,...).                                             |
 | `className` | `string`               | `undefined`   | Các lớp CSS bổ sung để tùy chỉnh giao diện.                                                           |
