@@ -13,15 +13,13 @@ Component `Title` là một component tiêu đề (`<h3>`) có thể tái sử d
 ## ⚙️ Hướng dẫn sử dụng & API
 
 ### Các thuộc tính (Props)
-
 | Thuộc tính      | Kiểu                                 | Mặc định      | Mô tả                                                                                                                  |
-| :-------------- | :----------------------------------- | :------------ | :--------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| `variant`       | `'primary'`                          | `'secondary'` | `'primary'`                                                                                                            | Xác định kiểu dáng (kích thước) của tiêu đề. |
+|-----------------|--------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------|
+| `variant`       | `'primary'` \| `'secondary'`         | `'primary'`   | Xác định kiểu dáng (kích thước) của tiêu đề.                                                                          |
 | `children`      | `ReactNode`                          | `undefined`   | Nội dung văn bản hoặc các phần tử React sẽ hiển thị bên trong tiêu đề.                                                 |
 | `className`     | `string`                             | `undefined`   | Các lớp CSS bổ sung để tùy chỉnh giao diện.                                                                            |
 | `showUnderline` | `boolean`                            | `false`       | **Lưu ý:** Prop này được định nghĩa nhưng hiện tại chưa có ảnh hưởng đến component. Gạch chân động luôn được hiển thị. |
 | `...props`      | `HTMLAttributes<HTMLHeadingElement>` |               | Bất kỳ thuộc tính hợp lệ nào khác của thẻ `<h3>` trong HTML.                                                           |
-
 ---
 
 ## 🚀 Ví dụ sử dụng
