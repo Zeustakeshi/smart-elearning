@@ -28,7 +28,10 @@ spring:
       fail-on-unknown-properties: false
 
 resources:
+  default-background:
+    course: "https://tse1.mm.bing.net/th/id/OIP.P1tCh-O3o_SWiGxh2NgxAgHaDQ?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
   default-avatar:
+    course: "https://img.freepik.com/premium-vector/courses-flat-illustration_120816-68574.jpg"
     student: "https://tse2.mm.bing.net/th/id/OIP.Nv0nGIfNJvPR3rNyKoXOEgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
     teacher: "https://static.vecteezy.com/system/resources/previews/007/023/565/non_2x/avatar-of-a-young-smiling-guy-in-a-green-t-shirt-portrait-of-a-student-partner-sales-manager-for-advice-bots-support-illustration-flat-vector.jpg"
 server:
