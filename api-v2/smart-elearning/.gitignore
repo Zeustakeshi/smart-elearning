@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /env
+/google-cloud-auth

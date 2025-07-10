@@ -7,10 +7,13 @@
 
 package com.smartelearning.smartelearning.service.impl;
 
+import com.smartelearning.smartelearning.common.enums.ErrorCode;
 import com.smartelearning.smartelearning.dto.request.CourseRequest;
+import com.smartelearning.smartelearning.dto.request.UpdateCourseAvatarRequest;
 import com.smartelearning.smartelearning.dto.response.CourseResponse;
 import com.smartelearning.smartelearning.entity.Account;
 import com.smartelearning.smartelearning.entity.Course;
+import com.smartelearning.smartelearning.exceptions.ApiException;
 import com.smartelearning.smartelearning.mapper.CourseMapper;
 import com.smartelearning.smartelearning.repository.CourseRepository;
 import com.smartelearning.smartelearning.service.CourseService;
@@ -41,5 +44,13 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(course);
 
         return courseMapper.toCourseResponse(course);
+    }
+
+    @Override
+    public String updateCourseAvatar(String courseId, UpdateCourseAvatarRequest request, Account teacher) {
+        Course course = courseRepository.findByIdAndTeacherId(courseId, teacher.getId())
+                .orElseThrow(() -> new ApiException(ErrorCode.COURSE_NOT_FOUND));
+
+        return "";
     }
 }

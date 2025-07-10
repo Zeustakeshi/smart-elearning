@@ -1,6 +1,13 @@
 spring:
   application:
     name: smart-elearning
+  spring:
+    cloud:
+      gcp:
+        credentials:
+          location: ${GOOGLE_APPLICATION_CREDENTIALS}
+        storage:
+          bucket-name: smart-elearning
   security:
     cors:
       client-url: ${CLIENT_URL:http://127.0.0.1:5173}
