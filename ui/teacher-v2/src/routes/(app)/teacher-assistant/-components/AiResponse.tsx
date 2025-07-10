@@ -17,12 +17,37 @@ type Props = {
 };
 
 const example = `##
-Chào bạn đây là câu trả lời cho bạn
-\`\`\`python
-print("xin chào")
-for i in range(0, 10):
-    print("hello word") # this line will print 10 time
+Chào bạn, dưới đây là đoạn mã Go để tìm các số nguyên tố trong một khoảng nhất định:
+
+\`\`\`go
+package main
+
+    "fmt"
+)
+
+func isPrime(n int) bool {
+    if n < 2 {
+        return false
+    }
+    for i := 2; i*i <= n; i++ {
+        if n%i == 0 {
+            return false
+        }
+    }
+    return true
+}
+
+func main() {
+    fmt.Println("Các số nguyên tố từ 2 đến 50 là:")
+    for i := 2; i <= 50; i++ {
+        if isPrime(i) {
+            fmt.Printf("%d ", i)
+        }
+    }
+}
 \`\`\`
+
+Bạn có thể thay đổi giá trị trong vòng lặp để kiểm tra các khoảng khác nhau.
 `;
 
 const AiResponse = ({}: Props) => {
