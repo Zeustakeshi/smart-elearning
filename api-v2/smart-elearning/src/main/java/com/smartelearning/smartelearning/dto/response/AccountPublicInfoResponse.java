@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserPublicInfoResponse {
+public class AccountPublicInfoResponse {
     private String id;
     private String name;
     private String avatar;

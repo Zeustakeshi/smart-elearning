@@ -20,7 +20,7 @@ public class CourseResponse {
     private String description;
     private String background;
     private CoursePermission permission;
-    private UserPublicInfoResponse teacher;
+    private AccountPublicInfoResponse teacher;
     private Integer lessonCount;
     private Integer studentCount;
 }
