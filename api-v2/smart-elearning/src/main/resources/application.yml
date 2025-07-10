@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: smart-elearning
+  security:
+    cors:
+      client-url: ${CLIENT_URL:http://127.0.0.1:5173}
+    jwt:
+      access-token:
+        secret: ${ACCESS_TOKEN_SECRET_KEY}
+        expire-in: ${ACCESS_TOKEN_EXPIRE_IN:2}
+      refresh-token:
+        secret: ${REFRESH_TOKEN_SECRET_KEY}
+        expire-in: ${REFRESH_TOKEN_EXPIRE_IN:5}
+  data:
+    mongodb:
+      database: smart-elearning
+      auto-index-creation: true
+      uri: ${DB_URI}
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      fail-on-empty-beans: false
+      close-closeable: true
+      flush-after-write-value: true
+      write-date-keys-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+resources:
+  default-avatar:
+    student: "https://tse2.mm.bing.net/th/id/OIP.Nv0nGIfNJvPR3rNyKoXOEgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+    teacher: "https://static.vecteezy.com/system/resources/previews/007/023/565/non_2x/avatar-of-a-young-smiling-guy-in-a-green-t-shirt-portrait-of-a-student-partner-sales-manager-for-advice-bots-support-illustration-flat-vector.jpg"
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
