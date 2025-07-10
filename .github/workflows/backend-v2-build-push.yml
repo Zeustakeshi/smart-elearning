@@ -27,9 +27,9 @@ jobs:
 
             - name: Build the Docker image
               working-directory: ./api-v2/smart-elearning
-              run: docker build . --file Dockerfile --tag zeustakeshi/smart-elearning-backend:latest
+              run: docker build . --file Dockerfile --tag zeustakeshi/smart-elearning-api:latest
 
             - name: login Dockerhub
               run: |
                   docker login -u "zeustakeshi" -p ${{ secrets.DOCKER_HUB_TOKEN }}
-                  docker push zeustakeshi/smart-elearning-backend:latest
+                  docker push zeustakeshi/smart-elearning-api:latest
