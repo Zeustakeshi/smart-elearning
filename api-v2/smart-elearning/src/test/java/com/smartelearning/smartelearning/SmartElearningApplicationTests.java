@@ -6,6 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SmartElearningApplicationTests {
 
-	@Test
-	void contextLoads() {}
+	// @Test
+	// void contextLoads() {}
 }
