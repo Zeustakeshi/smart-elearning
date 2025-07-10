@@ -54,9 +54,10 @@ const Dropdown = ({ className, children, onChange, value }: DropdownProps) => {
 
 type DropdownTriggerProps = {
     className?: string;
+    children?: ReactNode;
 };
 
-const DropdownTrigger = ({ className }: DropdownTriggerProps) => {
+const DropdownTrigger = ({ className, children }: DropdownTriggerProps) => {
     const { label } = useDropdown();
     return (
         <Menu.Button
@@ -66,7 +67,8 @@ const DropdownTrigger = ({ className }: DropdownTriggerProps) => {
                 className
             )}
         >
-            {label || "Chọn 1 giá trị"}
+            {children}
+            {!children && (label || "Chọn 1 giá trị")}
         </Menu.Button>
     );
 };
