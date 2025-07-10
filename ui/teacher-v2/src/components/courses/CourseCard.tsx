@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { FaUsers } from "react-icons/fa";
 import { HiMiniDocumentText } from "react-icons/hi2";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
@@ -6,7 +7,13 @@ type Props = {};
 
 const CourseCard = ({}: Props) => {
     return (
-        <div className="rounded-2xl overflow-hidden transition-all translate-0.5 hover:shadow-xl cursor-pointer">
+        <Link
+            to="/courses/$id/lessons"
+            params={{
+                id: "1",
+            }}
+            className="block rounded-2xl overflow-hidden transition-all translate-0.5 hover:shadow-xl cursor-pointer"
+        >
             <div className="w-full aspect-video">
                 <img
                     className="size-full object-cover"
@@ -43,7 +50,7 @@ const CourseCard = ({}: Props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

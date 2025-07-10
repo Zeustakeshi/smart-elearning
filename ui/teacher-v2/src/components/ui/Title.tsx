@@ -24,7 +24,7 @@ const Title = ({
     variant = TitleVariant.PRIMARY,
     children,
     className,
-    showUnderline = false,
+    showUnderline = true,
     ...props
 }: Props) => {
     return (
@@ -37,7 +37,9 @@ const Title = ({
             {...props}
         >
             {children}
-            <span className="group-hover:w-[100%] absolute  transition-all  translate-0.5 bottom-[-5px] left-0 w-[60%] h-[3px] rounded-full bg-primary"></span>
+            {showUnderline && (
+                <span className="group-hover:w-[100%] absolute  transition-all  translate-0.5 bottom-[-5px] left-0 w-[60%] h-[3px] rounded-full bg-primary"></span>
+            )}
         </h3>
     );
 };

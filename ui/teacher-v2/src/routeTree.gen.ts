@@ -21,11 +21,16 @@ import { Route as appDocumentsIndexRouteImport } from './routes/(app)/documents/
 import { Route as appCoursesIndexRouteImport } from './routes/(app)/courses/index'
 import { Route as appdashboardIndexRouteImport } from './routes/(app)/(dashboard)/index'
 import { Route as appCoursesNewRouteImport } from './routes/(app)/courses/new'
-import { Route as appCoursesIdRouteImport } from './routes/(app)/courses/$id'
+import { Route as appCoursesIdRouteRouteImport } from './routes/(app)/courses/$id/route'
 import { Route as appToolsMultipleChoiceQuizIndexRouteImport } from './routes/(app)/tools/multiple-choice-quiz/index'
 import { Route as appToolsLessonSummaryIndexRouteImport } from './routes/(app)/tools/lesson-summary/index'
 import { Route as appToolsLessonPlanIndexRouteImport } from './routes/(app)/tools/lesson-plan/index'
 import { Route as appToolsDiscussionQuestionIndexRouteImport } from './routes/(app)/tools/discussion-question/index'
+import { Route as appLessonsIdVideoIndexRouteImport } from './routes/(app)/lessons/$id/video/index'
+import { Route as appLessonsIdQuizIndexRouteImport } from './routes/(app)/lessons/$id/quiz/index'
+import { Route as appLessonsIdDocumentsIndexRouteImport } from './routes/(app)/lessons/$id/documents/index'
+import { Route as appCoursesIdLessonsIndexRouteImport } from './routes/(app)/courses/$id/lessons/index'
+import { Route as appCoursesIdDocumentsIndexRouteImport } from './routes/(app)/courses/$id/documents/index'
 
 const WelcomeRoute = WelcomeRouteImport.update({
   id: '/welcome',
@@ -87,7 +92,7 @@ const appCoursesNewRoute = appCoursesNewRouteImport.update({
   path: '/courses/new',
   getParentRoute: () => appRouteRoute,
 } as any)
-const appCoursesIdRoute = appCoursesIdRouteImport.update({
+const appCoursesIdRouteRoute = appCoursesIdRouteRouteImport.update({
   id: '/courses/$id',
   path: '/courses/$id',
   getParentRoute: () => appRouteRoute,
@@ -115,6 +120,34 @@ const appToolsDiscussionQuestionIndexRoute =
     path: '/tools/discussion-question/',
     getParentRoute: () => appRouteRoute,
   } as any)
+const appLessonsIdVideoIndexRoute = appLessonsIdVideoIndexRouteImport.update({
+  id: '/lessons/$id/video/',
+  path: '/lessons/$id/video/',
+  getParentRoute: () => appRouteRoute,
+} as any)
+const appLessonsIdQuizIndexRoute = appLessonsIdQuizIndexRouteImport.update({
+  id: '/lessons/$id/quiz/',
+  path: '/lessons/$id/quiz/',
+  getParentRoute: () => appRouteRoute,
+} as any)
+const appLessonsIdDocumentsIndexRoute =
+  appLessonsIdDocumentsIndexRouteImport.update({
+    id: '/lessons/$id/documents/',
+    path: '/lessons/$id/documents/',
+    getParentRoute: () => appRouteRoute,
+  } as any)
+const appCoursesIdLessonsIndexRoute =
+  appCoursesIdLessonsIndexRouteImport.update({
+    id: '/lessons/',
+    path: '/lessons/',
+    getParentRoute: () => appCoursesIdRouteRoute,
+  } as any)
+const appCoursesIdDocumentsIndexRoute =
+  appCoursesIdDocumentsIndexRouteImport.update({
+    id: '/documents/',
+    path: '/documents/',
+    getParentRoute: () => appCoursesIdRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof appdashboardIndexRoute
@@ -122,7 +155,7 @@ export interface FileRoutesByFullPath {
   '/welcome': typeof WelcomeRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/courses/$id': typeof appCoursesIdRoute
+  '/courses/$id': typeof appCoursesIdRouteRouteWithChildren
   '/courses/new': typeof appCoursesNewRoute
   '/courses': typeof appCoursesIndexRoute
   '/documents': typeof appDocumentsIndexRoute
@@ -133,13 +166,18 @@ export interface FileRoutesByFullPath {
   '/tools/lesson-plan': typeof appToolsLessonPlanIndexRoute
   '/tools/lesson-summary': typeof appToolsLessonSummaryIndexRoute
   '/tools/multiple-choice-quiz': typeof appToolsMultipleChoiceQuizIndexRoute
+  '/courses/$id/documents': typeof appCoursesIdDocumentsIndexRoute
+  '/courses/$id/lessons': typeof appCoursesIdLessonsIndexRoute
+  '/lessons/$id/documents': typeof appLessonsIdDocumentsIndexRoute
+  '/lessons/$id/quiz': typeof appLessonsIdQuizIndexRoute
+  '/lessons/$id/video': typeof appLessonsIdVideoIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRouteRouteWithChildren
   '/welcome': typeof WelcomeRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/courses/$id': typeof appCoursesIdRoute
+  '/courses/$id': typeof appCoursesIdRouteRouteWithChildren
   '/courses/new': typeof appCoursesNewRoute
   '/': typeof appdashboardIndexRoute
   '/courses': typeof appCoursesIndexRoute
@@ -151,6 +189,11 @@ export interface FileRoutesByTo {
   '/tools/lesson-plan': typeof appToolsLessonPlanIndexRoute
   '/tools/lesson-summary': typeof appToolsLessonSummaryIndexRoute
   '/tools/multiple-choice-quiz': typeof appToolsMultipleChoiceQuizIndexRoute
+  '/courses/$id/documents': typeof appCoursesIdDocumentsIndexRoute
+  '/courses/$id/lessons': typeof appCoursesIdLessonsIndexRoute
+  '/lessons/$id/documents': typeof appLessonsIdDocumentsIndexRoute
+  '/lessons/$id/quiz': typeof appLessonsIdQuizIndexRoute
+  '/lessons/$id/video': typeof appLessonsIdVideoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -159,7 +202,7 @@ export interface FileRoutesById {
   '/welcome': typeof WelcomeRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/(app)/courses/$id': typeof appCoursesIdRoute
+  '/(app)/courses/$id': typeof appCoursesIdRouteRouteWithChildren
   '/(app)/courses/new': typeof appCoursesNewRoute
   '/(app)/(dashboard)/': typeof appdashboardIndexRoute
   '/(app)/courses/': typeof appCoursesIndexRoute
@@ -171,6 +214,11 @@ export interface FileRoutesById {
   '/(app)/tools/lesson-plan/': typeof appToolsLessonPlanIndexRoute
   '/(app)/tools/lesson-summary/': typeof appToolsLessonSummaryIndexRoute
   '/(app)/tools/multiple-choice-quiz/': typeof appToolsMultipleChoiceQuizIndexRoute
+  '/(app)/courses/$id/documents/': typeof appCoursesIdDocumentsIndexRoute
+  '/(app)/courses/$id/lessons/': typeof appCoursesIdLessonsIndexRoute
+  '/(app)/lessons/$id/documents/': typeof appLessonsIdDocumentsIndexRoute
+  '/(app)/lessons/$id/quiz/': typeof appLessonsIdQuizIndexRoute
+  '/(app)/lessons/$id/video/': typeof appLessonsIdVideoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -191,6 +239,11 @@ export interface FileRouteTypes {
     | '/tools/lesson-plan'
     | '/tools/lesson-summary'
     | '/tools/multiple-choice-quiz'
+    | '/courses/$id/documents'
+    | '/courses/$id/lessons'
+    | '/lessons/$id/documents'
+    | '/lessons/$id/quiz'
+    | '/lessons/$id/video'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -209,6 +262,11 @@ export interface FileRouteTypes {
     | '/tools/lesson-plan'
     | '/tools/lesson-summary'
     | '/tools/multiple-choice-quiz'
+    | '/courses/$id/documents'
+    | '/courses/$id/lessons'
+    | '/lessons/$id/documents'
+    | '/lessons/$id/quiz'
+    | '/lessons/$id/video'
   id:
     | '__root__'
     | '/(app)'
@@ -228,6 +286,11 @@ export interface FileRouteTypes {
     | '/(app)/tools/lesson-plan/'
     | '/(app)/tools/lesson-summary/'
     | '/(app)/tools/multiple-choice-quiz/'
+    | '/(app)/courses/$id/documents/'
+    | '/(app)/courses/$id/lessons/'
+    | '/(app)/lessons/$id/documents/'
+    | '/(app)/lessons/$id/quiz/'
+    | '/(app)/lessons/$id/video/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -326,7 +389,7 @@ declare module '@tanstack/react-router' {
       id: '/(app)/courses/$id'
       path: '/courses/$id'
       fullPath: '/courses/$id'
-      preLoaderRoute: typeof appCoursesIdRouteImport
+      preLoaderRoute: typeof appCoursesIdRouteRouteImport
       parentRoute: typeof appRouteRoute
     }
     '/(app)/tools/multiple-choice-quiz/': {
@@ -357,11 +420,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof appToolsDiscussionQuestionIndexRouteImport
       parentRoute: typeof appRouteRoute
     }
+    '/(app)/lessons/$id/video/': {
+      id: '/(app)/lessons/$id/video/'
+      path: '/lessons/$id/video'
+      fullPath: '/lessons/$id/video'
+      preLoaderRoute: typeof appLessonsIdVideoIndexRouteImport
+      parentRoute: typeof appRouteRoute
+    }
+    '/(app)/lessons/$id/quiz/': {
+      id: '/(app)/lessons/$id/quiz/'
+      path: '/lessons/$id/quiz'
+      fullPath: '/lessons/$id/quiz'
+      preLoaderRoute: typeof appLessonsIdQuizIndexRouteImport
+      parentRoute: typeof appRouteRoute
+    }
+    '/(app)/lessons/$id/documents/': {
+      id: '/(app)/lessons/$id/documents/'
+      path: '/lessons/$id/documents'
+      fullPath: '/lessons/$id/documents'
+      preLoaderRoute: typeof appLessonsIdDocumentsIndexRouteImport
+      parentRoute: typeof appRouteRoute
+    }
+    '/(app)/courses/$id/lessons/': {
+      id: '/(app)/courses/$id/lessons/'
+      path: '/lessons'
+      fullPath: '/courses/$id/lessons'
+      preLoaderRoute: typeof appCoursesIdLessonsIndexRouteImport
+      parentRoute: typeof appCoursesIdRouteRoute
+    }
+    '/(app)/courses/$id/documents/': {
+      id: '/(app)/courses/$id/documents/'
+      path: '/documents'
+      fullPath: '/courses/$id/documents'
+      preLoaderRoute: typeof appCoursesIdDocumentsIndexRouteImport
+      parentRoute: typeof appCoursesIdRouteRoute
+    }
   }
 }
 
+interface appCoursesIdRouteRouteChildren {
+  appCoursesIdDocumentsIndexRoute: typeof appCoursesIdDocumentsIndexRoute
+  appCoursesIdLessonsIndexRoute: typeof appCoursesIdLessonsIndexRoute
+}
+
+const appCoursesIdRouteRouteChildren: appCoursesIdRouteRouteChildren = {
+  appCoursesIdDocumentsIndexRoute: appCoursesIdDocumentsIndexRoute,
+  appCoursesIdLessonsIndexRoute: appCoursesIdLessonsIndexRoute,
+}
+
+const appCoursesIdRouteRouteWithChildren =
+  appCoursesIdRouteRoute._addFileChildren(appCoursesIdRouteRouteChildren)
+
 interface appRouteRouteChildren {
-  appCoursesIdRoute: typeof appCoursesIdRoute
+  appCoursesIdRouteRoute: typeof appCoursesIdRouteRouteWithChildren
   appCoursesNewRoute: typeof appCoursesNewRoute
   appdashboardIndexRoute: typeof appdashboardIndexRoute
   appCoursesIndexRoute: typeof appCoursesIndexRoute
@@ -373,10 +484,13 @@ interface appRouteRouteChildren {
   appToolsLessonPlanIndexRoute: typeof appToolsLessonPlanIndexRoute
   appToolsLessonSummaryIndexRoute: typeof appToolsLessonSummaryIndexRoute
   appToolsMultipleChoiceQuizIndexRoute: typeof appToolsMultipleChoiceQuizIndexRoute
+  appLessonsIdDocumentsIndexRoute: typeof appLessonsIdDocumentsIndexRoute
+  appLessonsIdQuizIndexRoute: typeof appLessonsIdQuizIndexRoute
+  appLessonsIdVideoIndexRoute: typeof appLessonsIdVideoIndexRoute
 }
 
 const appRouteRouteChildren: appRouteRouteChildren = {
-  appCoursesIdRoute: appCoursesIdRoute,
+  appCoursesIdRouteRoute: appCoursesIdRouteRouteWithChildren,
   appCoursesNewRoute: appCoursesNewRoute,
   appdashboardIndexRoute: appdashboardIndexRoute,
   appCoursesIndexRoute: appCoursesIndexRoute,
@@ -388,6 +502,9 @@ const appRouteRouteChildren: appRouteRouteChildren = {
   appToolsLessonPlanIndexRoute: appToolsLessonPlanIndexRoute,
   appToolsLessonSummaryIndexRoute: appToolsLessonSummaryIndexRoute,
   appToolsMultipleChoiceQuizIndexRoute: appToolsMultipleChoiceQuizIndexRoute,
+  appLessonsIdDocumentsIndexRoute: appLessonsIdDocumentsIndexRoute,
+  appLessonsIdQuizIndexRoute: appLessonsIdQuizIndexRoute,
+  appLessonsIdVideoIndexRoute: appLessonsIdVideoIndexRoute,
 }
 
 const appRouteRouteWithChildren = appRouteRoute._addFileChildren(
