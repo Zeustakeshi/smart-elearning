@@ -25,7 +25,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Props>(
                 }}
                 ref={ref}
                 className={cn(
-                    "custom-scroll resize-none w-full bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50",
+                    " custom-scroll resize-none w-full bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50",
                     className
                 )}
                 onChange={handleChangeText}

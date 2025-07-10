@@ -32,7 +32,7 @@ const ChatInput = ({ className }: Props) => {
     return (
         <div
             className={cn(
-                "w-[80%] border border-foreground rounded-xl p-5",
+                "w-[80%] border border-foreground rounded-xl p-5 bg-white",
                 className
             )}
         >

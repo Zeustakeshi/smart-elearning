@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext";
 import { RiRobot3Line } from "react-icons/ri";
 import { cn } from "../../../../lib/utils";
 import AiResponse from "./AiResponse";
@@ -10,6 +11,7 @@ type Props = {
 
 const ChatConversation = ({ className }: Props) => {
     const { messages } = useAIChat();
+    const { user } = useAuth();
     return (
         <div
             className={cn(
@@ -26,7 +28,9 @@ const ChatConversation = ({ className }: Props) => {
                         <p className="font-semibold text-xl"> Trợ giảng AI</p>
                     </div>
                     <h3 className="text-xl">
-                        <span className="font-semibold">Xin chào username</span>
+                        <span className="font-semibold">
+                            Xin chào {user?.fullName}
+                        </span>
                         , Hôm nay của bạn thế nào?
                     </h3>
                 </div>

@@ -1,14 +1,14 @@
 import AppContainer from "../container/AppContainer";
 import Logo from "../ui/Logo";
 import GlobalSearch from "./GlobalSearch";
-import Profile from "./Profile";
+import HeaderRight from "./HeaderRight";
 
 type Props = {};
 
 const Header = ({}: Props) => {
     return (
         <div className="border-b border-b-foreground sticky top-0 z-50 bg-white/99 backdrop:blur-lg">
-            <AppContainer className="px-2 py-3 flex">
+            <AppContainer className="px-5 py-3 flex">
                 <div className="flex justify-start items-center gap-2">
                     <Logo></Logo>
                 </div>
@@ -16,7 +16,7 @@ const Header = ({}: Props) => {
                     <GlobalSearch></GlobalSearch>
                 </div>
                 <div className="flex justify-end items-center gap-2">
-                    <Profile></Profile>
+                    <HeaderRight></HeaderRight>
                 </div>
             </AppContainer>
         </div>

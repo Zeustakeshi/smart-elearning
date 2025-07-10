@@ -1,16 +1,22 @@
-import Button from "../ui/Button";
+import { useAuth } from "@/context/AuthContext";
+import { useState } from "react";
+import Avatar from "../ui/Avatar";
 
 type Props = {};
 
 const Profile = ({}: Props) => {
+    const [showMenu, setShowMenu] = useState<boolean>(false);
+    const { user, logout } = useAuth();
     return (
-        <div className="flex gap-2 justify-end items-center">
-            <Button to="/auth/register" variant="outline">
-                Đăng ký
-            </Button>
-            <Button to="/auth/login" variant="primary">
-                Đăng nhập
-            </Button>
+        <div className="relative">
+            <div onClick={() => setShowMenu((show) => !show)}>
+                <Avatar src={user?.avatar}></Avatar>
+            </div>
+            {showMenu && (
+                <div className="absolute top-[110%]" onClick={() => logout()}>
+                    Đăng xuất
+                </div>
+            )}
         </div>
     );
 };
