@@ -4,7 +4,7 @@ on:
         branches:
             - feature/api/create-api-v2-with-java
         paths:
-            - /api-v2/smart-elearning
+            - /api-v2/smart-elearning/**
             - .github/workflows/backend-v2-build-push.yml
 jobs:
     build:
