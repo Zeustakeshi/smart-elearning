@@ -47,7 +47,7 @@ function RouteComponent() {
   const handleSubmit = async (value: CreateCourseSchemaType) => {
     try {
       await mutateAsync(value);
-      toast.success("Một khóa học vừa được thành công");
+      toast.success("Một khóa học vừa được tạo thành công");
       router.navigate({ to: "/" });
     } catch (error) {
       handleApiError(error);
