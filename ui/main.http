@@ -1,4 +1,4 @@
-@baseUrl = http://34.46.251.166/api/v1
+@baseUrl = http://34.30.20.146/api/v1
 @teacher_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJfaWQiOjMsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InRlYWNoZXJAZ21haWwuY29tIiwic2NvcGUiOiJURUFDSEVSIiwiZXhwIjoxNzUxODcwOTU4LCJpYXQiOjE3NTE4NjM3NTh9.yNeBaSSJvsprdYVDvnv2sfREJHLLlwJZGVm8dZ-J79g
 
 @student_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfaWQiOjIsInVzZXJuYW1lIjoiTWluaCBIaeG6v3UiLCJlbWFpbCI6InN0dWRlbnRBQkNAZ21haWwuY29tIiwic2NvcGUiOiJTVFVERU5UIiwiZXhwIjoxNzUxODcwOTAwLCJpYXQiOjE3NTE4NjM3MDB9.5u8yaAUkhsqwvDw25sVZcpN4KH8-Rv78K619LsVI7dQ
@@ -10,9 +10,9 @@ POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-    "email" : "teacher@gmail.com",
-    "username": "Minh Hiếu",
-    "password" : "123456",
+    "email" : "vohoangtuan1980t@gmail.com",
+    "username": "Hoàng Tuấn",
+    "password" : "1234@abc",
     "type": "TEACHER" 
 }
 
